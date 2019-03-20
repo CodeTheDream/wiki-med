@@ -1,0 +1,12 @@
+Facilities
+
+<div>
+  <% @facilities.each do |facility| %>
+    <div>
+      <%=facility.name%> <%= facility.city %> <%= facility.state %> <%= facility.zip %> 
+          <%= facility.specialty %> 
+      <%= link_to "Edit", edit_facility_path(facility.id), method: :'get' %>
+      <%= link_to "Delete", facility_path(facility.id), method: :'delete' %>
+    </div>
+  <%end%>
+</div>

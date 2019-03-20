@@ -31,15 +31,15 @@ class ProceduresController < ApplicationController
 
     #update exisiting database entry -- only available to admin? -------
     def update
-        procedure = Procedure.new
+        procedure = Procedure.find(params[:id])
         procedure.name = params[:procedure][:name]
         procedure.date = params[:procedure][:date]
         procedure.description = params[:procedure][:description]
         procedure.price = params[:procedure][:price]
-        procedure.facility_id = params[:procedure][:facility_id]
-        procedure.status = params[:status] #drop down?
+        procedure.facility_id = params[:facility_id]
+        procedure.status = 'pending'
         procedure.save
-        redirect_to "/"
+        redirect_to "/admins"
     end
 
     def show
@@ -53,6 +53,6 @@ class ProceduresController < ApplicationController
     def destroy
         procedure = Procedure.find(params[:id])
         procedure.destroy
-        redirect_to "/"
+        redirect_to "/admins"
     end
 end

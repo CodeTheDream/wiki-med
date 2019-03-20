@@ -31,7 +31,7 @@ class FacilitiesController < ApplicationController
         facility.zip = params[:facility][:zip]
         facility.specialty = params[:facility][:specialty]
         facility.save
-        redirect_to "/"
+        redirect_to "/admins"
     end
     
     def show
@@ -40,7 +40,7 @@ class FacilitiesController < ApplicationController
     def destroy
         facility = Facility.find(params[:id])
         facility.destroy
-        redirect_to "/"
+        redirect_to "/admins"
         
     end
 end

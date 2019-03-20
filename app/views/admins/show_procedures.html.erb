@@ -1,0 +1,12 @@
+All Procedures | <%= link_to "Pending Procedures", admins_path, method: :'get' %>
+
+<div>
+  <% @procedures.each do |procedure|%>
+    <div>
+      <%=procedure.name%> <%= procedure.date %> <%= procedure.description %> <%= procedure.price %> 
+          <%= procedure.status %> <%= procedure.facility_id %>
+      <%= link_to "Edit", edit_procedure_path(procedure.id), method: :'get' %>
+      <%= link_to "Delete", procedure_path(procedure.id), method: :'delete' %>
+    </div>
+  <%end%>
+</div>

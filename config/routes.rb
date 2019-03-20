@@ -3,12 +3,16 @@ Rails.application.routes.draw do
     devise_for :users
   resources :facilities
   resources :procedures
-  resources :items do
-    collection do 
-      put :approve
+  resources :items
+  resources :admins do
+    member do
+      post 'approve_p'
+      post 'approve'
+      get 'show_items'
+      get 'show_procedures'
+      get 'show_facilities'
     end
   end
-  resources :admins
   
  root "facilities#index"
   # The priority is based upon order of creation: first created -> highest priority.
