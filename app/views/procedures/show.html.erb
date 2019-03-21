@@ -1,0 +1,7 @@
+<% @procedures.each do |p|%>
+    <div><%=p.name%>
+    
+    <%p.facilities.each do |f|%>
+        <%=f.name%>
+    <%end%></div>
+<%end%>

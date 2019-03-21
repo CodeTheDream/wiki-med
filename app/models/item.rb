@@ -1,3 +1,5 @@
 class Item < ActiveRecord::Base
-    has_many :facilities, through: :facility_items
+    has_many :item_instances
+
+    
 end
