@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-    devise_for :users
+  devise_for :users
   resources :facilities
   resources :procedures
   resources :items
@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     member do
       post 'approve_p'
       post 'approve'
+    end
+    
+    collection do
       get 'show_items'
       get 'show_procedures'
       get 'show_facilities'

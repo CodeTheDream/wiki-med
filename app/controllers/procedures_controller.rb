@@ -1,58 +1,59 @@
 class ProceduresController < ApplicationController
-     #Currently shows all Procedures
-    def index
-        @procedures = Procedure.all
-    end
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :base_params, :create_params, :update_params]
+  #Currently shows all pending Procedures
+  def index
+    @procedures = Procedure.where("status = 'approved'")
+  end
     
-    #Creates a new Procedure
-    def new
-        @procedure = Procedure.new
-        @facilities = Facility.all
-    end
+  #Creates a new Procedure
+  def new
+    @procedure = Procedure.new
+  end
 
-    #adds new procedure to database
-    def create
-        procedure = Procedure.new
-        procedure.name = params[:procedure][:name]
-        procedure.date = params[:procedure][:date]
-        procedure.description = params[:procedure][:description]
-        procedure.price = params[:procedure][:price]
-        procedure.facility_id = params[:procedure][:facility_id]
-        procedure.status = "pending"
-        procedure.save
-        redirect_to "/"
-    end
+  #adds new procedure to database
+  def create
+    @procedure = Procedure.create(create_params)
+    @procedure.status = "pending"
+    @procedure.save
+    redirect_to "/"
+  end
 
-    #edit exisiting database entry -- only available to admin? -------
-    def edit
-        @procedure = Procedure.find(params[:id])
-        @facilities = Facility.all
-    end
+  #edit exisiting database entry -- only available to admin -------
+  def edit
+    @procedure = Procedure.find(params[:id])
+  end
 
-    #update exisiting database entry -- only available to admin? -------
-    def update
-        procedure = Procedure.find(params[:id])
-        procedure.name = params[:procedure][:name]
-        procedure.date = params[:procedure][:date]
-        procedure.description = params[:procedure][:description]
-        procedure.price = params[:procedure][:price]
-        procedure.facility_id = params[:facility_id]
-        procedure.status = 'pending'
-        procedure.save
-        redirect_to "/admins"
-    end
+  #update exisiting database entry -- only available to admin -------
+  def update
+    @procedure = Procedure.find(params[:id])
+    @procedure.update(update_params)
+    @procedure.status = 'pending'
+    @procedure.save
+    redirect_to "/admins"
+  end
 
-    def show
-    end
+  def show
+  end
 
-    def procedure_params
-        params.require(:procedure).permit(:name, :date, :description, :price)
-    end
-
-    #destroy database entry
-    def destroy
-        procedure = Procedure.find(params[:id])
-        procedure.destroy
-        redirect_to "/admins"
-    end
+  #destroy database entry
+  def destroy
+    procedure = Procedure.find(params[:id])
+    procedure.destroy
+    redirect_to "/admins"
+  end
+  
+  private
+  
+  def base_params
+    params.require(:procedure)
+  end
+  
+  def create_params
+    base_params.permit(:name, :date, :description, :price, :facility_id)
+  end
+  
+  def update_params
+    base_params.permit(:name, :date, :description, :price, :facility_id)
+  end
+  
 end
