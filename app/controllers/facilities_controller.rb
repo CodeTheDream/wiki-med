@@ -1,5 +1,5 @@
 class FacilitiesController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :base_params, :create_params, :update_params]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   def index
     @facilities = Facility.all
   end
@@ -9,9 +9,8 @@ class FacilitiesController < ApplicationController
   end
     
   def create
-    @facility = Facility.create(create_params)
-    @facility.save
-  redirect_to "/"
+    @facility = Facility.create(facilities_params)
+    redirect_to root_url
       
   end
     
@@ -21,31 +20,23 @@ class FacilitiesController < ApplicationController
     
   def update
     @facility = Facility.find(params[:id])
-    @facility.update(update_params)
-    @facility.save
-    redirect_to "/admins"
+    @facility.update(facilities_params)
+    redirect_to admins_url
   end
     
   def show
   end
     
   def destroy
-    facility = Facility.find(params[:id])
-    facility.destroy
-    redirect_to "/admins"
+    @facility = Facility.find(params[:id])
+    @facility.destroy
+    redirect_to admins_url
   end
   
   private
   
-  def base_params
-    params.require(:facility)
+  def facilities_params
+    params.require(:facility).permit(:name, :city, :state, :zip, :specialty)
   end
-  
-  def create_params
-    base_params.permit(:name, :city, :state, :zip, :specialty)
-  end
-  
-  def update_params
-    base_params.permit(:name, :city, :state, :zip, :specialty)
-  end
+
 end

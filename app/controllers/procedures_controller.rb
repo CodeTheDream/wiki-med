@@ -1,8 +1,8 @@
 class ProceduresController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :base_params, :create_params, :update_params]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   #Currently shows all pending Procedures
   def index
-    @procedures = Procedure.where("status = 'approved'")
+    @procedures = Procedure.where(status: 'approved')
   end
     
   #Creates a new Procedure
@@ -12,10 +12,10 @@ class ProceduresController < ApplicationController
 
   #adds new procedure to database
   def create
-    @procedure = Procedure.create(create_params)
-    @procedure.status = "pending"
+    @procedure = Procedure.new(procedures_params)
+    @procedure.status = 'pending'
     @procedure.save
-    redirect_to "/"
+    redirect_to root_url
   end
 
   #edit exisiting database entry -- only available to admin -------
@@ -26,10 +26,10 @@ class ProceduresController < ApplicationController
   #update exisiting database entry -- only available to admin -------
   def update
     @procedure = Procedure.find(params[:id])
-    @procedure.update(update_params)
+    @procedure.update(procedures_params)
     @procedure.status = 'pending'
     @procedure.save
-    redirect_to "/admins"
+    redirect_to admins_url
   end
 
   def show
@@ -37,23 +37,15 @@ class ProceduresController < ApplicationController
 
   #destroy database entry
   def destroy
-    procedure = Procedure.find(params[:id])
-    procedure.destroy
-    redirect_to "/admins"
+    @procedure = Procedure.find(params[:id])
+    @procedure.destroy
+    redirect_to admins_url
   end
   
   private
   
-  def base_params
-    params.require(:procedure)
-  end
-  
-  def create_params
-    base_params.permit(:name, :date, :description, :price, :facility_id)
-  end
-  
-  def update_params
-    base_params.permit(:name, :date, :description, :price, :facility_id)
+  def procedures_params
+    params.require(:procedure).permit(:name, :date, :description, :price, :facility_id)
   end
   
 end

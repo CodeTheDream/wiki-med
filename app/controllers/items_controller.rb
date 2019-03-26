@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :base_params, :create_params, :update_params]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   
   def index
-    @items=Item.where("status = 'approved'")
+    @items=Item.where(status: 'approved')
   end
     
   def show
@@ -14,10 +14,10 @@ class ItemsController < ApplicationController
   end
     
   def create
-    @item = Item.create(create_params)
-    @item.status = "pending"
+    @item = Item.new(items_params)
+    @item.status = 'pending'
     @item.save
-    redirect_to "/"
+    redirect_to root_url
   end
     
   #edit exisiting database entry -- only available to admin
@@ -28,31 +28,23 @@ class ItemsController < ApplicationController
   #update exisiting database entry -- only available to admin
   def update
     @item = Item.find(params[:id])
-    @item.update(update_params)
+    @item.update(items_params)
     @item.status = 'pending'
     @item.save
-    redirect_to "/admins"
+    redirect_to admins_url
   end
     
   #destroy database entry 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to "/admins"
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to admins_url
   end
     
   private
   
-  def base_params
-    params.require(:item)
-  end
-  
-  def create_params
-    base_params.permit(:name, :date, :description, :price, :facility_id)
-  end
-  
-  def update_params
-    base_params.permit(:name, :date, :description, :price, :facility_id)
+  def items_params
+    params.require(:item).permit(:name, :date, :description, :price, :facility_id)
   end
     
 end

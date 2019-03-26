@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :items
   resources :admins do
     member do
-      post 'approve_p'
-      post 'approve'
+      post 'approve_procedure'
+      post 'approve_item'
     end
     
     collection do
