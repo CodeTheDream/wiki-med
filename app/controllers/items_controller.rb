@@ -2,15 +2,15 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   
   def index
-    @items=Item.where(status: 'approved')
+    @items = Item.where(status: 'approved')
   end
     
   def show
-    @item=Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
     
   def new
-    @item=Item.new
+    @item = Item.new
   end
     
   def create

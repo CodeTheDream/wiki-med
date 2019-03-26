@@ -19,14 +19,6 @@ class AdminsController < ApplicationController
     @procedure.save
     redirect_to admins_url
   end
-
-  def edit 
-    @item = Item.find(params[:id])
-  end
-    
-  def edit_p
-    @procedure = Item.find(params[:id])
-  end
     
   def show_items
     @items = Item.all
