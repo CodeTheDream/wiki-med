@@ -1,0 +1,11 @@
+All Items | <%= link_to "Pending Items", admins_path, method: :'get' %>
+
+<div>
+  <% @items.each do |item|%>
+    <div>
+      <%=item.name%> <%= item.date %> <%= item.description %> <%= item.price %> <%= item.status %> <%= item.facility_id %>
+      <%= link_to "Edit", edit_item_path(item.id), method: :'get' %>
+      <%= link_to "Delete", item_path(item.id), method: :'delete' %>
+    </div>
+  <%end%>
+</div>

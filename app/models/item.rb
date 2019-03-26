@@ -1,3 +1,3 @@
 class Item < ActiveRecord::Base
-    has_many :facilities, through: :facility_items
+  has_one :facility, foreign_key: :facility_id
 end

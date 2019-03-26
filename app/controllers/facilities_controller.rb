@@ -1,46 +1,42 @@
 class FacilitiesController < ApplicationController
-    def index
-        @facilities = Facility.all
-    end
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  def index
+    @facilities = Facility.all
+  end
     
-    def new
-        @facility = Facility.new
-    end
+  def new
+    @facility = Facility.new
+  end
     
-    def create
-        facility = Facility.new
-        facility.name = params[:facility][:name]
-        facility.city = params[:facility][:city]
-        facility.state = params[:facility][:state]
-        facility.zip = params[:facility][:zip]
-        facility.specialty = params[:facility][:specialty]
-        facility.save
-        redirect_to "/"
-        
-    end
+  def create
+    @facility = Facility.create(facilities_params)
+    redirect_to root_url
+      
+  end
     
-    def edit
-        @facility = Facility.find(params[:id])
-    end
+  def edit
+    @facility = Facility.find(params[:id])
+  end
     
-    def update
-        facility = Facility.find(params[:id])
-        facility.name = params[:facility][:name]
-        facility.city = params[:facility][:city]
-        facility.state = params[:facility][:state]
-        facility.zip = params[:facility][:zip]
-        facility.specialty = params[:facility][:specialty]
-        facility.save
-        redirect_to "/"
-    end
+  def update
+    @facility = Facility.find(params[:id])
+    @facility.update(facilities_params)
+    redirect_to admins_url
+  end
     
-    def show
-    end
+  def show
+  end
     
-    def destroy
-        facility = Facility.find(params[:id])
-        facility.destroy
-        redirect_to "/"
-        
-    end
+  def destroy
+    @facility = Facility.find(params[:id])
+    @facility.destroy
+    redirect_to admins_url
+  end
+  
+  private
+  
+  def facilities_params
+    params.require(:facility).permit(:name, :city, :state, :zip, :specialty)
+  end
+
 end

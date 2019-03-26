@@ -6,13 +6,7 @@
   <%= f.number_field :price, placeholder: 'Price', min: 0, step: 0.01 %>
   <%= f.submit 'Submit' %>
    <div>
-      <select name='facility_id'>
-        <option>
-          <% @facilities.each do |f| %>
-            <option value="<%= f.id %>"><%= f.name %></option>
-          <% end %>
-        </option>
-      </select>
-      <%= link_to  "Add Facility",new_facility_path %>
+      <%= collection_select(:item, :facility_id, Facility.all, :id, :name, prompt: true) %>
+      <%= link_to  "Add Facility", new_facility_path %>
     </div>
 <% end %> 
