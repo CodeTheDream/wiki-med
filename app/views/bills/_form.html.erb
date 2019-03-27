@@ -1,0 +1,14 @@
+<%= form_for @bill do |bill| %>
+  <%= bill.date_field :date, placeholder: 'Date of Procedure' %>
+  <div>
+    <%= collection_select(:bill, :procedure_id, Procedure.all, :id, :name, prompt: true) %>
+    <%= link_to "Add Item", new_item_path %>
+    <%= mail_to "lljackson1031@gmail.com" do %>
+      <strong>Email me:</strong> <span>lljackson1031@gmail.com</span>
+    <% end %>
+  </div>
+  <div>
+    <%= collection_select(:item, :facility_id, Facility.all, :id, :name, prompt: true) %>
+    <%= link_to  "Add Facility", new_facility_path %>
+  </div>
+<% end %>
