@@ -5,6 +5,8 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :description
       t.float :price
       t.references :bill , foreign_key: true
+      #Needed for nested attributes 
+      t.references :item, index: true, foreign_key: true
       t.timestamps
     end
   end
