@@ -13,8 +13,6 @@ class ProceduresController < ApplicationController
   #adds new procedure to database
   def create
     @procedure = Procedure.new(procedures_params)
-    @procedure.status = 'pending'
-    @procedure.save
     redirect_to root_url
   end
 
@@ -45,7 +43,7 @@ class ProceduresController < ApplicationController
   private
   
   def procedures_params
-    params.require(:procedure).permit(:name, :date, :description, :price, :facility_id)
+    params.require(:procedure).permit(:name, :description)
   end
   
 end
