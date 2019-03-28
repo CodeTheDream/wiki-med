@@ -2,7 +2,7 @@ class ProceduresController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   #Currently shows all pending Procedures
   def index
-    @procedures = Procedure.where(status: 'approved')
+    @procedures = Procedure.all
   end
     
   #Creates a new Procedure
@@ -12,10 +12,12 @@ class ProceduresController < ApplicationController
 
   #adds new procedure to database
   def create
-    @procedure = Procedure.new(procedures_params)
-    @procedure.status = 'pending'
-    @procedure.save
-    redirect_to root_url
+    @procedure = Procedure.create(procedures_params)
+    if @procedure.save
+      redirect_to root_path 
+    else 
+      render 'new'
+    end
   end
 
   #edit exisiting database entry -- only available to admin -------
@@ -27,7 +29,6 @@ class ProceduresController < ApplicationController
   def update
     @procedure = Procedure.find(params[:id])
     @procedure.update(procedures_params)
-    @procedure.status = 'pending'
     @procedure.save
     redirect_to admins_url
   end
@@ -45,7 +46,7 @@ class ProceduresController < ApplicationController
   private
   
   def procedures_params
-    params.require(:procedure).permit(:name, :date, :description, :price, :facility_id)
+    params.require(:procedure).permit(:name, :description)
   end
   
 end

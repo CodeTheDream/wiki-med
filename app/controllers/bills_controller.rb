@@ -5,6 +5,8 @@ class BillsController < ApplicationController
  
  def new
    @bill = Bill.new
+   @bill.items.build
+
  end 
  
  def create
