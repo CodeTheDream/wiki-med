@@ -2,7 +2,7 @@ class ProceduresController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   #Currently shows all pending Procedures
   def index
-    @procedures = Procedure.where(status: 'approved')
+    @procedures = Procedure.all
   end
     
   #Creates a new Procedure
@@ -25,8 +25,6 @@ class ProceduresController < ApplicationController
   def update
     @procedure = Procedure.find(params[:id])
     @procedure.update(procedures_params)
-    @procedure.status = 'pending'
-    @procedure.save
     redirect_to admins_url
   end
 
