@@ -14,9 +14,7 @@ class ItemsController < ApplicationController
   end
     
   def create
-    @item = Item.new(items_params)
-    @item.status = 'pending'
-    @item.save
+    @item = Item.create(items_params)
     redirect_to root_url
   end
     
@@ -44,7 +42,6 @@ class ItemsController < ApplicationController
   private
   
   def items_params
-    params.require(:item).permit(:name, :date, :description, :price, :facility_id)
+    params.require(:item).permit(:name, :description, :price, :bill_id)
   end
-    
 end
