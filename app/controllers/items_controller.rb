@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   
   def index
-    @items = Item.where(status: 'approved')
+    @items = Item.all
   end
     
   def show
@@ -27,8 +27,6 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @item.update(items_params)
-    @item.status = 'pending'
-    @item.save
     redirect_to admins_url
   end
     
