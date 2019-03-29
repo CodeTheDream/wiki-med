@@ -12,7 +12,7 @@ class ProceduresController < ApplicationController
 
   #adds new procedure to database
   def create
-    @procedure = Procedure.new(procedures_params)
+    @procedure = Procedure.create(procedures_params)
     redirect_to root_url
   end
 
