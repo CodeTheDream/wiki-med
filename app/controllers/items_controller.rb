@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   
   def index
-    @items = Item.where(status: 'approved')
+    @items = Item.all
   end
     
   def show
@@ -14,9 +14,7 @@ class ItemsController < ApplicationController
   end
     
   def create
-    @item = Item.new(items_params)
-    @item.status = 'pending'
-    @item.save
+    @item = Item.create(items_params)
     redirect_to root_url
   end
     
@@ -29,8 +27,6 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @item.update(items_params)
-    @item.status = 'pending'
-    @item.save
     redirect_to admins_url
   end
     
@@ -44,7 +40,6 @@ class ItemsController < ApplicationController
   private
   
   def items_params
-    params.require(:item).permit(:name, :date, :description, :price, :facility_id)
+    params.require(:item).permit(:name, :description, :price, :bill_id)
   end
-    
 end
