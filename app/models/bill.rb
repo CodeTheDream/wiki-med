@@ -1,7 +1,7 @@
 class Bill < ActiveRecord::Base
   has_many :items
+    accepts_nested_attributes_for :items, reject_if: :all_blank, allow_destroy: true
   #nested attributes
-  accepts_nested_attributes_for :items, allow_destroy: true
-  has_many :procedures
+  belongs_to :procedure
+  belongs_to :facility
 end
-

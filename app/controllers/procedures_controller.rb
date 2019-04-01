@@ -43,8 +43,7 @@ class ProceduresController < ApplicationController
     redirect_to admins_url
   end
   
-  private
-  
+private
   def procedures_params
     params.require(:procedure).permit(:name, :description)
   end

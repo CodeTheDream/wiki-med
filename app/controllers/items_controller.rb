@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
     @item = Item.new(items_params)
     @item.status = 'pending'
     @item.save
-    redirect_to root_url
+    redirect_to root_path
   end
     
   #edit exisiting database entry -- only available to admin
@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
   private
   
   def items_params
-    params.require(:item).permit(:name, :date, :description, :price, :facility_id)
+    params.require(:item).permit(:name, :date, :description, :price, :facility_id, )
   end
     
 end

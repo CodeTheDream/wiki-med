@@ -5,26 +5,23 @@
     <%= collection_select(:bill, :procedure_id, Procedure.all, :id, :name, prompt: true) %>
     <%= link_to "Add Procedure", new_procedure_path %>
     <%= mail_to "lljackson1031@gmail.com" do %>
-    <div>
-      If 'other', Email Admin <strong>Here</strong> 
-    </div>
+      <div>
+        If 'other', Email Admin <strong>Here</strong> 
+      </div>
     <% end %>
   </div>
   <div>
     <%= collection_select(:bill, :facility_id, Facility.all, :id, :name, prompt: true) %>
     <%= link_to  "Add Facility", new_facility_path %>
   </div>
-  <ul>
-    <%= bill.nested_fields_for :items do |item| %>
-    <li>
-      <%= item.text_field :name %>
-      <%= item.text_field :description %>
-      <%= item.number_field :price, min: 0, step: 0.01%> 
-      <%= item.add_nested_fields_link :items do %>
-        <span>Add Itemized Cost</span>
-      <% end %>
-    </li>
+<h3>Tasks</h3>
+  <div id='items'>
+    <%= bill.fields_for :items do |item| %>
+      <%= render 'item_fields', :f => item %>
     <% end %>
-  </ul>
+    <div class='links'>
+      <%= link_to_add_association 'add task', bill, :items %>
+    </div>
+  </div>
     <%= bill.submit "Submit Bill" %>
 <% end %>
