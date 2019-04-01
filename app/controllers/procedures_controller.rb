@@ -1,5 +1,5 @@
 class ProceduresController < ApplicationController
-before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   #Currently shows all pending Procedures
   def index
     @procedures = Procedure.all
