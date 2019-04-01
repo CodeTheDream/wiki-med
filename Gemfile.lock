@@ -233,9 +233,9 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.1.5)
-  poltergeist
+  poltergeist (~> 1.18.1)
   rails (= 5.2.2.1)
-  rspec-rails
+  rspec-rails (~> 3.8.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
