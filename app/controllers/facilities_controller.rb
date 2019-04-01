@@ -11,7 +11,6 @@ class FacilitiesController < ApplicationController
   def create
     @facility = Facility.create(facilities_params)
     redirect_to root_url
-      
   end
     
   def edit
@@ -36,7 +35,7 @@ class FacilitiesController < ApplicationController
   private
   
   def facilities_params
-    params.require(:facility).permit(:name, :city, :state, :zip, :specialty)
+    params.require(:facility).permit(:name, :street, :city, :state, :zip, :specialty)
   end
 
 end
