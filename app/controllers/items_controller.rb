@@ -1,18 +1,23 @@
 class ItemsController < ApplicationController
+  #verifies admin is logged in before actions edit, update and destroy are permitted	
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
-  
+
+  #Displays all items
   def index
     @items = Item.all
   end
-    
+  
+  #shows details of one item
   def show
     @item = Item.find(params[:id])
   end
-    
+  
+  #creates an item to pass into the new form  
   def new
     @item = Item.new
   end
-    
+  
+  #creates a new item using strong params and redirects back to root  
   def create
     @item = Item.create(items_params)
     redirect_to root_url
