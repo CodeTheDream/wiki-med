@@ -1,29 +1,29 @@
 <%=form_for @facility do |f|%>
 
   <div>
-    <%= f.text_field  :name, placeholder: "Name of Facility" %>
-    <%= f.label :facility, 'Facility' %>
+    <%= f.text_field :name, placeholder: "Name of Facility" %>
+    <%= f.label :name, 'Facility' %>
   </div>
   <div>
-    <%= f.text_field :street, placeholder: "Street Adress" %>
-    <%= f.label :street_address, 'Street Adress' %>
+    <%= f.text_field :street, placeholder: "Street Address" %>
+    <%= f.label :street, 'Street Address' %>
   </div>
 
   <div>
     <%= f.text_field :city, placeholder: "City" %>
-    <%= f.label :city, 'City' %>
+    <%= f.label :city %>
   </div>
   <div>
     <%= f.text_field :state, placeholder: "State" %>
-    <%= f.label :state, 'State' %>
+    <%= f.label :state %>
   </div>
   <div>
     <%= f.text_field :zip, placeholder: "ZIP Code" %>
-    <%= f.label :zip, 'Zip' %>
+    <%= f.label :zip %>
   </div>
   <div>
     <%= f.text_field :specialty, placeholder: "Speciality of Facility" %>
-    <%= f.label :specialty, 'Specialty' %>
+    <%= f.label :specialty %>
   </div>
 
    <div>
