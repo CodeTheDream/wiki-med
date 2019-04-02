@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_02_154937) do
+ActiveRecord::Schema.define(version: 2019_04_02_182736) do
 
   create_table "bills", force: :cascade do |t|
     t.date "date"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2019_04_02_154937) do
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "bill_id"
   end
 
   create_table "procedures", force: :cascade do |t|
