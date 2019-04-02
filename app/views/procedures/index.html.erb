@@ -8,11 +8,9 @@
 
 <h4 class="text-center p-2">Search</h4>
 
-<%= link_to  "New Procedure",new_procedure_path, class:'btn btn-primary btn-sm btn-block' %>
-
 <%= @procedures.each do |f|%>
     <div>
-        <%=f.name%> <%=f.date%> <%=f.description%> $<%=f.price%> Facility Name:<%=f.facility_id%>
+	    <%=f.name%> <%=f.description%> 
     </div>
 <%end%>
 
