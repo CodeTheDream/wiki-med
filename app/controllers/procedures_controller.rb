@@ -1,16 +1,16 @@
 class ProceduresController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
-  #Currently shows all pending Procedures
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  #Currently shows all Procedures
   def index
     @procedures = Procedure.all
   end
     
-  #Creates a new Procedure
+  #Creates a new Procedure -- only available to admin
   def new
     @procedure = Procedure.new
   end
 
-  #adds new procedure to database
+  #adds new procedure to database -- only available to admin
   def create
     @procedure = Procedure.create(procedures_params)
     redirect_to root_url
