@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 2019_04_02_185133) do
     t.string "street"
   end
 
+  create_table "facility_items", force: :cascade do |t|
+    t.integer "facility_id"
+    t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "description"
