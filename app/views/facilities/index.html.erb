@@ -7,8 +7,7 @@
 
   <h4 class="text-center p-2">Search</h4>
 
-<%= link_to  "New Facility",new_facility_path, class:'new_entry' %>
-
+<%= link_to  "New Facility",new_facility_path, class:'btn btn-primary btn-sm btn-block' %>
 
 <ul class="list-group row">
   <% @facilities.each do |f|%>
@@ -16,7 +15,10 @@
     <h4 class=''><%=f.name%></h4>
     <h6><%=f.specialty%></h6>
     <div>
-      <%=f.city%>, <%=f.state%>
+      <%= f.street %> 
+      <div>
+        <%= f.city %>, <%= f.state %> <%= f.zip %>
+      </div> 
     </div>
   </a>
 </ul>

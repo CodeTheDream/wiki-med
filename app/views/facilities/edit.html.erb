@@ -1,25 +1,5 @@
-<%=form_for @facility do |f|%>
-    
-  
-    <div>
-        <%=f.text_field  :name ,placeholder:"Name of Facility"%> 
-    </div>
-    
-    <div>
-        <%=f.text_field :city ,placeholder:"City"%> 
-    </div>
-    <div>
-        <%=f.text_field :state ,placeholder:"State"%> 
-    </div>
-    <div>
-        <%=f.text_field :zip ,placeholder:"ZIP Code"%> 
-    </div>
-    <div>
-        <%=f.text_field :specialty ,placeholder:"Speciality of Facility"%> 
-    </div>
-    
-     <div>
-        <%=f.submit "Post"%>
-    </div>
-
-<%end%>
+<h1> Edit Facility </h1>
+<%= render 'form' %>
+<div class= "p-2">
+    <div><%= link_to "Back", root_path, class:"btn btn-sm btn-outline-danger"%></div>
+</div>
