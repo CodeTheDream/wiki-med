@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 #Listen gem install required in rails 5
 gem 'listen', '~> 3.1.5'
+gem "recaptcha", require: "recaptcha/rails"
 
 gem 'bootsnap', '~>1.4.1'
 # Use ActiveModel has_secure_password
