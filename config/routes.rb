@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get 'show_items'
       get 'show_procedures'
       get 'show_facilities'
+      get 'signup'
     end
   end
   

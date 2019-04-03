@@ -13,7 +13,7 @@ class ProceduresController < ApplicationController
   #adds new procedure to database -- only available to admin
   def create
     @procedure = Procedure.create(procedures_params)
-    redirect_to root_url
+    redirect_to admins_url
   end
 
   #edit exisiting database entry -- only available to admin -------
