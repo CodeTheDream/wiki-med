@@ -12,10 +12,14 @@ class FacilitiesController < ApplicationController
     @facility = Facility.new
   end
     
-  #creates a new facility from strong params and redirects to root
+  #creates a new facility from strong params and redirects to root or admin page if logged in.
   def create
     @facility = Facility.create(facilities_params)
-    redirect_to root_url
+    if (user_signed_in?)
+      redirect_to admins_url
+    else 
+      redirect_to root_url
+    end
   end
     
   #creates an instance variable for an existing facility to edit
