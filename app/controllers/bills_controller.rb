@@ -21,10 +21,10 @@ class BillsController < ApplicationController
     @bill = Bill.new(bill_params)
     @bill.status = "pending"
     @bill.price = @bill.total
-    if !@bill.save
-      render 'new'
+    if @bill.save
+      redirect root_path
     else
-      redirect_to root_path
+      render 'new'
     end
   end 
   
