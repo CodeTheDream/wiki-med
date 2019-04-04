@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_02_185133) do
+ActiveRecord::Schema.define(version: 2019_04_03_132544) do
 
   create_table "bills", force: :cascade do |t|
     t.date "date"
     t.float "price", default: 0.0
-    t.integer "procedure_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "facility_id"
+    t.integer "procedure_id"
+    t.index ["facility_id"], name: "index_bills_on_facility_id"
+    t.index ["procedure_id"], name: "index_bills_on_procedure_id"
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -47,7 +49,6 @@ ActiveRecord::Schema.define(version: 2019_04_02_185133) do
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
