@@ -1,6 +1,6 @@
-<%= form_for @bill do |bill| %>
-  <%= label_tag ("Date:") %>
-  <%= bill.date_field :date, placeholder: 'Date of Procedure' %>
+<%= form_for @bill do |f| %>
+  <%= f.label :date %>
+  <%= f.date_field :date, placeholder: 'Date of Procedure' %>
   <div>
     <%= collection_select(:bill, :procedure_id, Procedure.all, :id, :name, prompt: true) %>
     <%= link_to "Add Procedure", new_procedure_path %>
@@ -14,16 +14,16 @@
     <%= collection_select(:bill, :facility_id, Facility.all, :id, :name, prompt: true) %>
     <%= link_to  "Add Facility", new_facility_path %>
   </div>
-<h3>Tasks</h3>
+  <h3>Items</h3>
   <div id='items'>
-    <%= bill.fields_for :items do |item| %>
-      <%= render 'item_fields', :f => item %>
+    <%= f.fields_for :items do |item| %>
+       <%= render 'item_fields', f: item %>
     <% end %>
     <div class='links'>
-      <%= link_to_add_association 'add task', bill, :items %>
+      <%= link_to_add_association 'add item', f, :items %>
     </div>
+    <p class="count">Total: <span><%= @bill.items.count %></span></p>
   </div>
-  <%= recaptcha_tags %>    
-  <%= bill.submit "Submit Bill" %>
+  <%= f.submit "Submit Bill" %>
 <% end %>
 

@@ -1,3 +1,3 @@
 class Facility < ActiveRecord::Base
-    has_many :bill
+    has_many :bills
 end
