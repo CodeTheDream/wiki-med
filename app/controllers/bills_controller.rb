@@ -1,31 +1,38 @@
 class BillsController < ApplicationController
   
-  @total=0.0
+  
  def total
-  bill.item.price.each do |price|
-   @total += price
-  end
+   @total=0.0
+    bill.item.price.each do |price|
+      @total += price
+    end
  end
 
- def index
-   @bills = Bill.all
- end
- 
- def new
-   @bill = Bill.new
-   1.times {@bill.items.build}
- end 
- 
- def create
-   @bill = Bill.new(bill_params)
-   @bill.status = "pending"
-   @bill.price = @bill.total
-  if !@bill.save
-   render 'new'
-  else
-  redirect_to root_path
+  def index
+    @bills = Bill.all
   end
- end 
+ 
+  def new
+   @bill = Bill.new
+    @bill.items.build
+  end 
+ 
+  def create
+    @bill = Bill.new(bill_params)
+    @bill.status = "pending"
+    @bill.price = @bill.total
+    if @bill.save
+      redirect root_path
+    else
+      render 'new'
+    end
+  end 
+  
+  def delete
+    @bill = Bill.find(params[:id])
+    @bill.destroy
+    redirect_to root_path
+  end
 
  private
   def bill_params

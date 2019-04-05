@@ -1,22 +1,30 @@
 class FacilitiesController < ApplicationController
+  #ensures admin is looged in before edit, update and destroy are permitted
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  
+  #creates an instance variable to pass all facilities into view
   def index
     @facilities = Facility.all
   end
-    
+  
+  #creates an instance variable to pass into new form  
   def new
     @facility = Facility.new
   end
     
+  #creates a new facility from strong params and redirects to root
   def create
     @facility = Facility.create(facilities_params)
     redirect_to root_url
   end
     
+  #creates an instance variable for an existing facility to edit
+  #available only to admins
   def edit
     @facility = Facility.find(params[:id])
   end
-    
+  
+  #updates an existing facility and redirects to admin path  
   def update
     @facility = Facility.find(params[:id])
     @facility.update(facilities_params)
@@ -25,7 +33,8 @@ class FacilitiesController < ApplicationController
     
   def show
   end
-    
+  
+  #deletes an existing facility -- only available to admins  
   def destroy
     @facility = Facility.find(params[:id])
     @facility.destroy
@@ -34,6 +43,7 @@ class FacilitiesController < ApplicationController
   
   private
   
+  #only accepts params in the format {facility => [:name, :street, :city, :state, :zip, :specialty]}
   def facilities_params
     params.require(:facility).permit(:name, :street, :city, :state, :zip, :specialty)
   end
