@@ -1,7 +1,6 @@
-<div>
-  <%=@procedure.name%>
-</div>
+<%= @procedures.each do |p|%>
+    <div>
+            <%=p.name%> <%=p.description%>
+    </div>
+<%end%>
 
-<div>
-  <%=f.description%>
-</div>
