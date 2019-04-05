@@ -1,6 +1,6 @@
 class Bill < ApplicationRecord
-  has_one  :procedure
+  belongs_to  :procedure
   has_many :items
-  has_one  :facility
+  belongs_to  :facility
 end
 
