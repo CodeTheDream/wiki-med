@@ -13,7 +13,7 @@ class ProceduresController < ApplicationController
   #adds new procedure to database -- only available to admin
   def create
     @procedure = Procedure.create(procedures_params)
-    redirect_to root_url
+    redirect_to admins_url
   end
 
   #edit exisiting database entry -- only available to admin -------
@@ -28,10 +28,12 @@ class ProceduresController < ApplicationController
     redirect_to admins_url
   end
 
+  # passes a single procedure to the show view
   def show
+    @procedure = Procedure.find(params[:id])	  
   end
 
-  #destroy database entry
+  #destroy database entry -- only available to admin
   def destroy
     @procedure = Procedure.find(params[:id])
     @procedure.destroy
@@ -40,6 +42,7 @@ class ProceduresController < ApplicationController
   
   private
   
+  # limits what parameters are allowed to be passed in
   def procedures_params
     params.require(:procedure).permit(:name, :description)
   end  
