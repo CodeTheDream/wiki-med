@@ -26,7 +26,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 #Listen gem install required in rails 5
 gem 'listen', '~> 3.1.5'
-
+#recaptcha rails gem
+gem 'recaptcha', '~> 3.3'
 gem 'jquery-ui-rails', '~>6.0.1'
 
 gem 'bootsnap', '~>1.4.1'
