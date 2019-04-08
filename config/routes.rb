@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
   resources :facilities
-  resources :bills
+  resources :bills do
+  collection do
+    get 'common'
+  end
+end
   resources :procedures
   resources :items
   resources :admins do
@@ -17,7 +21,7 @@ Rails.application.routes.draw do
       get 'show_facilities'
     end
   end
-   "/common_procedures" => "bills#common"
+ 
  root "facilities#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

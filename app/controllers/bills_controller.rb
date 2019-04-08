@@ -1,20 +1,28 @@
-class BillsController < ApplicationController 
+class BillsController < ApplicationController
   
+  
+ def total
+   @total=0.0
+    bill.item.price.each do |price|
+      @total += price
+    end
+ end
+
   def index
     @bills = Bill.all
   end
  
   def new
-    @bill = Bill.new
+   @bill = Bill.new
     @bill.items.build
   end 
  
   def create
     @bill = Bill.new(bill_params)
     @bill.status = "pending"
-    @bill.price = total(@bill)
+    @bill.price = @bill.total
     if @bill.save
-      redirect_to root_url
+      redirect root_path
     else
       render 'new'
     end
@@ -23,21 +31,17 @@ class BillsController < ApplicationController
   def delete
     @bill = Bill.find(params[:id])
     @bill.destroy
-    redirect_to root_url
+    redirect_to root_path
+  end
+  def common
+    @countOfProcedure =Bill.group(:procedure_id).count
+    @procedures = Procedure.all
+    @bills = Bill.all
+    
   end
 
-  private
-  
+ private
   def bill_params
     params.require(:bill).permit(:date, :facility_id, :procedure_id, items_attributes:[:name, :description, :price, :id, :_destroy])
-  end
-
-  def total(bill)
-    sum=0.0
-    bill.items.each do |i|
-      sum += i.price
-    end
-    return sum
-  end
- 
+  end 
 end
