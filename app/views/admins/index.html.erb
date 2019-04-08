@@ -1,26 +1,25 @@
-Welcome <%= current_user.first_name %> | <%= link_to 'Facilities', show_facilities_admins_path %>
+Welcome <%= current_user.first_name %> 
 
 <div>
-  <div><h1>Pending Items</h1><%= link_to 'All Items', show_items_admins_path %></div>
-  <% @items.each do |item|%>
-    <div>
-      <%=item.name%> <%= item.date %> <%= item.description %> <%= item.price %> <%= item.status %> <%= item.facility_id %>
-      <%= link_to 'Approve', approve_item_admin_path(item.id), method: :'post' %>
-      <%= link_to 'Edit', edit_item_path(item.id) %>
-      <%= link_to 'Delete', item_path(item.id), method: :'delete' %>
-    </div>
-  <%end%>
-</div>
+  <div>
+    <h1>Bills</h1>
+  </div>
+  <div>
+    <h1>Items</h1>
+    <%= link_to 'All Items', show_items_admins_path %> | 
+    <%= link_to 'New Item', new_item_path %>
+  </div>
 
-<div>
-  <div><h1>Pending Procedures</h1><%= link_to 'All Procedures', show_procedures_admins_path %></div>
-  <% @procedures.each do |procedure|%>
-    <div>
-      <%=procedure.name%> <%= procedure.date %> <%= procedure.description %> <%= procedure.price %> 
-        <%= procedure.status %> <%= procedure.facility_id %>
-      <%= link_to 'Approve', approve_procedure_admin_path(procedure.id), method: :'post' %>
-      <%= link_to 'Edit', edit_procedure_path(procedure.id) %>
-      <%= link_to 'Delete', procedure_path(procedure.id), method: :'delete' %>
-    </div>
-  <%end%>
+  <div>
+    <h1>Procedures</h1>
+    <%= link_to 'All Procedures', show_procedures_admins_path %> |
+    <%= link_to  'New Procedure', new_procedure_path %>
+  </div>
+
+  <div>
+    <h1>Facilities</h1>
+    <%= link_to 'All Facilities', show_facilities_admins_path %> | 
+    <%= link_to  'New Facility', new_facility_path %>
+  </div>
+
 </div>
