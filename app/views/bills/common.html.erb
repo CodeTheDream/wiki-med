@@ -1,0 +1,16 @@
+<h4> Common Procedures </h4>
+
+<% @countOfProcedure.each do |procedure|%>
+  <div>
+  <h5>  <%= @procedures.find(procedure[0]).name %></h5> Occuried <%= procedure[1] %> times
+    <%currentBill = @bills.where(procedure_id: procedure[0])%>
+    <div>Minimum price: $<%=sprintf "%.2f",currentBill.minimum(:price) %></div>
+    <div>Maximum price: $<%=sprintf "%.2f",currentBill.maximum(:price) %></div>
+    <div>Average price: $<%=sprintf "%.2f",currentBill.average(:price)%></div>
+    
+    Procedures happened at these places:
+    <%currentBill.each do |bill|%>
+      <%=bill.facility.name%>
+    <%end%>
+  </div>
+<% end %>
