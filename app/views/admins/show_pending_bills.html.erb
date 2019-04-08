@@ -1,0 +1,13 @@
+Pending Bills | <%= link_to "Back To Admin Page", admins_path %>
+
+<div>
+  <% @bills.each do |bill|%>
+    <div>
+    <%= bill.date %> <%= bill.price %> <%= bill.facility_id %> <%= bill.procedure_id %> <%= bill.status %>
+    <%= link_to "Approve", approve_bill_admin_path(bill), method: :post %>
+    <%= link_to "Edit", edit_bill_path(bill) %>
+    <%= link_to "Delete", bill_path(bill), method: :delete %>
+    </div>
+  <%end%>
+</div>
+

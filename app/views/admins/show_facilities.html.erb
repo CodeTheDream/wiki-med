@@ -1,4 +1,4 @@
-Facilities
+Facilities | <%= link_to "Back To Admin Page", admins_path %>
 
 <div>
   <% @facilities.each do |facility| %>
@@ -6,7 +6,7 @@ Facilities
       <%= facility.name %> <%= facility.city %> <%= facility.state %> <%= facility.zip %> 
         <%= facility.specialty %> 
       <%= link_to 'Edit', edit_facility_path(facility.id) %>
-      <%= link_to 'Delete', facility_path(facility.id), method: :'delete' %>
+      <%= link_to 'Delete', facility_path(facility.id), method: :delete %>
     </div>
   <%end%>
 </div>
