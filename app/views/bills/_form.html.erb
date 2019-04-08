@@ -1,29 +1,33 @@
-<%= form_for @bill do |f| %>
-  <%= f.label :date %>
-  <%= f.date_field :date, placeholder: 'Date of Procedure' %>
-  <div>
-    <%= collection_select(:bill, :procedure_id, Procedure.all, :id, :name, prompt: true) %>
-    <%= link_to "Add Procedure", new_procedure_path %>
-    <%= mail_to "lljackson1031@gmail.com" do %>
-      <div>
-        If 'other', Email Admin Here
-      </div>
-    <% end %>
-  </div>
-  <div>
-    <%= collection_select(:bill, :facility_id, Facility.all, :id, :name, prompt: true) %>
-    <%= link_to  "Add Facility", new_facility_path %>
-  </div>
-  <h3>Items</h3>
-  <div id='items'>
-    <%= f.fields_for :items do |item| %>
-       <%= render 'item_fields', f: item %>
-    <% end %>
-    <div class='links'>
-      <%= link_to_add_association 'add item', f, :items %>
+<container class="pl-3">
+  <%= form_for @bill do |f| %>
+    <%= f.label :date %>:
+    <%= f.date_field :date, placeholder: 'Date of Procedure' %>
+    <div>
+      <%= f.label :procedure %>:
+      <%= collection_select(:bill, :procedure_id, Procedure.all, :id, :name, prompt: true) %>
+      <%= link_to "Add Procedure", new_procedure_path, class:'btn-sm btn-warning' %>
+      <%= mail_to "lljackson1031@gmail.com" do %>
+        <div>
+          If 'other', Email Admin Here
+        </div>
+      <% end %>
     </div>
-    <p class="count">Total: <span><%= @bill.items.count %></span></p>
-  </div>
-  <%= f.submit "Submit Bill" %>
-<% end %>
+    <div>
+      <%= f.label :facility %>:
+      <%= collection_select(:bill, :facility_id, Facility.all, :id, :name, prompt: true) %>
+      <%= link_to  "Add Facility", new_facility_path, class:'btn-sm btn-warning' %>
+    </div>
+    <h3>Items</h3>
+    <div id='items'>
+      <%= f.fields_for :items do |item| %>
+         <%= render 'item_fields', f: item %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association 'Add Item', f, :items, class:'btn btn-primary m-2' %>
+      </div>
+      <p class="count">Total: <span><%= @bill.items.count %></span></p>
+    </div>
+    <%= f.submit "Submit Bill" %>
+  <% end %>
+</container>
 
