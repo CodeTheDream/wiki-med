@@ -18,9 +18,7 @@ ActiveRecord::Schema.define(version: 2019_04_03_132544) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "facility_id"
     t.integer "procedure_id"
-    t.index ["facility_id"], name: "index_bills_on_facility_id"
     t.index ["procedure_id"], name: "index_bills_on_procedure_id"
   end
 
