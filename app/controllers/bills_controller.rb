@@ -39,6 +39,7 @@ class BillsController < ApplicationController
     @bill = Bill.find(params[:id])
     @bill.update(bill_params)
     @bill.price = total(@bill)
+    @bill.status = 'pending'
     @bill.save
     redirect_to admins_url
   end
