@@ -13,12 +13,16 @@ end
     member do
       post 'approve_procedure'
       post 'approve_item'
+      post 'approve_bill'
     end
     
     collection do
+      get 'show_pending_bills'
+      get 'show_bills'	    
       get 'show_items'
       get 'show_procedures'
       get 'show_facilities'
+      get 'signup'
     end
   end
  
