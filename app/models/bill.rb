@@ -1,6 +1,10 @@
-class Bill < ApplicationRecord
-  has_one  :procedure
+class Bill < ActiveRecord::Base
+  belongs_to  :procedure
   has_many :items
-  has_one  :facility
+  belongs_to  :facility
+  accepts_nested_attributes_for :items, reject_if: :all_blank, allow_destroy: true
+
+
+
 end
 

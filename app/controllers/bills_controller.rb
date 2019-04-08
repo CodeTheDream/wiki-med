@@ -1,35 +1,43 @@
-class BillsController < ApplicationController
+class BillsController < ApplicationController 
   
-  @total=0.0
- def total
-  bill.item.price.each do |price|
-   @total += price
+  def index
+    @bills = Bill.all
   end
- end
-
- def index
-   @bills = Bill.all
- end
  
- def new
-   @bill = Bill.new
-   1.times {@bill.items.build}
- end 
+  def new
+    @bill = Bill.new
+    @bill.items.build
+  end 
  
- def create
-   @bill = Bill.new(bill_params)
-   @bill.status = "pending"
-   @bill.price = @bill.total
-  if !verify_recaptcha(model: @bill) || !@bill.save
-    flash.now[:danger]="You are a Robot"
-   render 'new'
-  else
-  redirect_to root_path
+  def create
+    @bill = Bill.new(bill_params)
+    @bill.status = "pending"
+    @bill.price = total(@bill)
+    if @bill.save
+      redirect_to root_url
+    else
+      render 'new'
+    end
+  end 
+  
+  def delete
+    @bill = Bill.find(params[:id])
+    @bill.destroy
+    redirect_to root_url
   end
- end 
 
- private
+  private
+  
   def bill_params
     params.require(:bill).permit(:date, :facility_id, :procedure_id, items_attributes:[:name, :description, :price, :id, :_destroy])
-  end 
+  end
+
+  def total(bill)
+    sum=0.0
+    bill.items.each do |i|
+      sum += i.price
+    end
+    return sum
+  end
+
 end

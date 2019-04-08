@@ -15,9 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'cocoon', '~> 1.2', '>= 1.2.9'
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.3.3'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,7 +26,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 #Listen gem install required in rails 5
 gem 'listen', '~> 3.1.5'
-gem "recaptcha", require: "recaptcha/rails"
+
+#recaptcha rails gem
+gem 'recaptcha', '~> 3.3'
+gem 'jquery-ui-rails', '~>6.0.1'
+
 
 gem 'bootsnap', '~>1.4.1'
 # Use ActiveModel has_secure_password
