@@ -16,12 +16,13 @@ ActiveRecord::Schema.define(version: 2019_04_05_135232) do
     t.date "date"
     t.float "price", default: 0.0
     t.string "status"
+    t.integer "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "facility_id"
     t.integer "procedure_id"
-    t.index ["facility_id"], name: "index_bills_on_facility_id"
     t.index ["procedure_id"], name: "index_bills_on_procedure_id"
+    t.index ["facility_id"], name: "index_bills_on_facility_id"
+
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -33,6 +34,13 @@ ActiveRecord::Schema.define(version: 2019_04_05_135232) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "street"
+  end
+
+  create_table "facility_items", force: :cascade do |t|
+    t.integer "facility_id"
+    t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|

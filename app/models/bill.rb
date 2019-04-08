@@ -3,8 +3,5 @@ class Bill < ActiveRecord::Base
   has_many :items
   belongs_to  :facility
   accepts_nested_attributes_for :items, reject_if: :all_blank, allow_destroy: true
-
-
-
 end
 
