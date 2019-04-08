@@ -5,13 +5,17 @@
     </h1>
   </div>
 
-<h4 class="text-center p-2">Search</h4>
+
 
 <%= link_to  "Input Billing Information", new_bill_path, class:'btn btn-primary btn-sm btn-block' %>
 
+<% if params[:search].present? %>
+  <h4 class="text-center p-2"><%= @bills.length%> results for your search for <%=params[:search] %></h4>
+<% end %>
+
 <% @bills.each do |f|%>
     <div>
-      <%= f.facility.name %> <%= f.date %> <%= f.procedure.name %> <%= f.price %>
+      <%= f.facility.name %> <%= f.date %> <%= f.procedure.name %> $<%= f.price %>
       <div>
         <% f.items.each do |item| %>
           <%= item.name %>
