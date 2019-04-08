@@ -1,0 +1,12 @@
+All Bills | <%= link_to "Back To Admin Page", admins_path() %>
+
+<div>
+  <% @bills.each do |bill|%>
+    <div>
+    <%= bill.date %> <%= bill.price %> <%= bill.facility_id %> <%= bill.procedure_id %> <%= bill.status %>
+    <%= link_to "Edit", edit_bill_path(bill.id) %>
+    <%= link_to "Delete", bill_path(bill.id), method: :'delete' %>
+    </div>
+  <%end%>
+</div>
+

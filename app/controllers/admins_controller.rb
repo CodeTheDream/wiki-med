@@ -17,6 +17,14 @@ class AdminsController < ApplicationController
     redirect_to admins_url
   end
   
+  # loads a bill and changes it's status to approved
+  def approve_bill
+    @bill = Bill.find(params[:id])
+    @bill.status = 'approved'
+    @bill.save
+    redirect_to admins_url
+  end
+
   #not going to need this once approve bill is working  
   def approve_procedure
     @procedure = Procedure.find(params[:id])
@@ -39,6 +47,17 @@ class AdminsController < ApplicationController
   def show_facilities
     @facilities = Facility.all
   end
+
+  # load all bills to pass into view
+  def show_bills
+    @bills = Bill.all
+  end
+
+  # load pending bills to pass into view
+  def show_pending_bills
+    @bills = Bill.where(status: :'pending')
+  end
+
 
   #signup for new admins
   def signup

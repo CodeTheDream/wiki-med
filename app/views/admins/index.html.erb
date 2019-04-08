@@ -3,6 +3,9 @@ Welcome <%= current_user.first_name %>
 <div>
   <div>
     <h1>Bills</h1>
+    <%= link_to 'All Bills', show_bills_admins_path %> |
+    <%= link_to 'Pending Bills', show_pending_bills_admins_path %> |
+    <%= link_to 'New Bill', new_bill_path %>
   </div>
   <div>
     <h1>Items</h1>
