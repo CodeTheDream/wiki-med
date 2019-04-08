@@ -1,11 +1,11 @@
-All Procedures | <%= link_to "Back To Admin Page", admins_path() %>
+All Procedures | <%= link_to "Back To Admin Page", admins_path %>
 
 <div>
   <% @procedures.each do |procedure|%>
     <div>
     <%=procedure.name%> <%= procedure.description %>
-    <%= link_to "Edit", edit_procedure_path(procedure.id), method: :'get' %>
-    <%= link_to "Delete", procedure_path(procedure.id), method: :'delete' %>
+    <%= link_to "Edit", edit_procedure_path(procedure) %>
+    <%= link_to "Delete", procedure_path(procedure), method: :delete %>
     </div>
   <%end%>
 </div>

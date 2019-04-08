@@ -1,11 +1,11 @@
-All Items | <%= link_to "Back To Admin Page", admins_path() %>
+All Items | <%= link_to "Back To Admin Page", admins_path %>
 
 <div>
   <% @items.each do |item|%>
     <div>
       <%= item.name %> <%= item.description %> <%= item.price %> <%= item.bill_id %>
       <%= link_to "Edit", edit_item_path(item.id) %>
-      <%= link_to "Delete", item_path(item.id), method: :'delete' %>
+      <%= link_to "Delete", item_path(item.id), method: :delete %>
     </div>
   <%end%>
 </div>
