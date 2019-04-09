@@ -23,6 +23,11 @@
       <%= link_to_add_association 'add item', f, :items %>
     </div>
   </div>
+  <div>
+    <%= f.label :humanizer_answer, @bill.humanizer_question %>
+    <%= f.text_field :humanizer_answer %>
+    <%= f.hidden_field :humanizer_question_id %>
+  </div>
   <%= f.submit "Submit Bill" %>
 <% end %>
 

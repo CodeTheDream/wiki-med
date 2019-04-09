@@ -24,6 +24,11 @@
     <%= item.number_field :price, min: 0, step: 0.01 %>
 
   <% end %>
+  <div>
+    <%= f.label :humanizer_answer, @bill.humanizer_question %>
+    <%= f.text_field :humanizer_answer %>
+    <%= f.hidden_field :humanizer_question_id %>
+  </div>  
   <%= f.submit "Submit Bill" %>
 
   <div><%= link_to "Back", root_path, class:"btn btn-sm btn-outline-danger"%></div>

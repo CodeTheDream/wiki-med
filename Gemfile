@@ -34,6 +34,9 @@ gem 'bootsnap', '~>1.4.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#humanizer for captcha
+gem 'humanizer', '~> 2.6.4'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
