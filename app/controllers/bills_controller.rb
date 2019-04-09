@@ -77,7 +77,7 @@ class BillsController < ApplicationController
   
   # limits params accepted to create/update a bill
   def bill_params
-    params.require(:bill).permit(:date, :facility_id, :procedure_id, items_attributes:[:name, :description, :price, :id, :_destroy])
+    params.require(:bill).permit(:humanizer_answer, :humanizer_question_id, :date, :facility_id, :procedure_id, items_attributes:[:name, :description, :price, :id, :_destroy])
   end
 
   # passes in a bill and sums up the costs of all that bill's items.  
