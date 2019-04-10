@@ -5,10 +5,10 @@ class BillsController < ApplicationController
   # loads all bills to pass into view
   def index
     if params[:search]
-    @procedures = Procedure.where('name LIKE ?', "%#{params[:search]}%")
+    @procedures = Procedure.where('name LIKE ? and status LIKE ?', "%#{params[:search]}%",'approved')
 	  @bills = Bill.where(:procedure_id =>[@procedures])
     else
-	    @bills = Bill.all
+	    @bills = Bill.where(status:'approved')
     end
   end
  
@@ -79,9 +79,14 @@ class BillsController < ApplicationController
     @bill.destroy
     redirect_to admins_path
   end
-
-  private
+  #common procedures
+  def common
+    @count_of_procedure = Bill.group(:procedure_id).count
+    @procedures = Procedure.all
+    @bills = Bill.all
+  end
   
+  private
   # limits params accepted to create/update a bill
   def bill_params
     params.require(:bill).permit(:humanizer_answer, :humanizer_question_id, :date, :facility_id, :procedure_id, items_attributes:[:name, :description, :price, :id, :_destroy])
@@ -96,5 +101,5 @@ class BillsController < ApplicationController
     end
     return sum
   end
- 
+  
 end

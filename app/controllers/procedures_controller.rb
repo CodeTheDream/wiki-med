@@ -49,4 +49,5 @@ class ProceduresController < ApplicationController
   def procedures_params
     params.require(:procedure).permit(:name, :description)
   end  
+  
 end
