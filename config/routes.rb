@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :facilities
   resources :bills do
-    collection do
+  collection do
       get 'quick_new' => 'bills#quick_new'
+      get 'common'
       post 'quick_create' => 'bills#quick_create'
       get 'common'
     end
