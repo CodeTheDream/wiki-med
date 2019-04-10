@@ -12,26 +12,44 @@
     </a>
       <ul class= "navbar-nav mr-auto">
         <li class= "nav-item">
-          <a href="/procedures" class="nav-link">Procedures</a>
-        </li>
-        <li class= "nav-item">
-          <a href="/items" class="nav-link">Items</a>
+          <a href="/bills" class="nav-link">Recent Bills</a>
         </li>
         <li class= "nav-item">
           <a href="/facilities" class="nav-link">Facilities</a>
         </li>
+        <li class= "nav-item">
+          <a href="/bills/common" class="nav-link">Common Procedures</a>
+        </li>
         
       </ul>
           <%= form_tag(bills_path,method: :get, class: "form-inline")do %>
-	         <%=text_field_tag(:search, params[:search],placeholder: 'Search Bill by Procedure',class: "form-control mr-sm-1")%>
+	         <%=text_field_tag(:search, params[:search],placeholder: 'Search by Procedure',class: "form-control mr-sm-1")%>
 	         <%=submit_tag ("Search"),name: nil%>
 	       <%end%>
         
         
   </nav>
   <style>
-
-
+    .rgba-gradient {
+      background: -moz-linear-gradient(45deg, rgba(0, 5, 255, 0.6), rgba(204, 255, 153, 0.69) 100%);
+      background: -webkit-linear-gradient(45deg, rgba(0, 5, 255, 0.6), rgba(204, 255, 153, 0.69) 100%);
+      background: linear-gradient(to 45deg, rgba(0, 153, 5, 0.6), rgba(204, 255, 153, 0.69) 100%);
+    }
+    .btn-primary.btn-outline:hover,
+    .btn-success.btn-outline:hover,
+    .btn-info.btn-outline:hover,
+    .btn-warning.btn-outline:hover,
+    .btn-danger.btn-outline:hover {
+        color: #fff;
+    }
+    .btn-outline {
+        background-color: transparent;
+        color: inherit;
+    }
+    
+    .btn-primary.btn-outline {
+        color: #428bca;
+    }
   </style>
 </head>
 <body>
@@ -43,12 +61,12 @@
   </div>
 <%= yield %>
 </div>
-<div class="card-footer text-muted text-right">
+<footer class="card-footer text-muted text-right">
     <% if user_signed_in? %>
         <%= link_to('Logout', destroy_user_session_path, method: :delete, class:"btn btn-outline-primary") %>
       <% else %>
         <%=link_to('Login', new_user_session_path, class:"btn btn-outline-primary")  %>
       <% end %>
-</div>
+</footer>
 </body>
 </html>

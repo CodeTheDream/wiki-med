@@ -1,19 +1,29 @@
-
 <main role="main">
   <div class="container border border-secondary rounded-lg mt-3">
     <h1 class="text-center">
-        Procedures
+        <%= @procedures.name %>
     </h1>
   </div>
 
-<h4 class="text-center p-2">Search</h4>
+<div class="p-2"><%= link_to  "New Procedure",new_procedure_path, class:'btn btn-primary btn-sm btn-block' %></div>
 
-<%= @procedures.each do |f|%>
-    <div>
-
-	    <%=f.name%> <%=f.description%> 
-
-    </div>
-<%end%>
-
+<div class="album py-5 bg-light">
+  <div class="container">
+     <div class="row">
+      <% @procedures.each do |procedure|%>
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <div class="card-header"><%= procedure.name %></div>
+          <div class="card-body" align='center'> <%= procedure.description %>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="btn-group">
+                <%= link_to "View All", procedure_path(procedure), class:"btn btn-sm btn-outline-secondary"%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
 </div>
+</main>

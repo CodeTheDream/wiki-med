@@ -7,10 +7,10 @@ class BillsController < ApplicationController
 
   def index
     if params[:search]
-    @procedures = Procedure.where('name LIKE ?', "%#{params[:search]}%")
-	  @bills = Bill.where(:procedure_id =>[@procedures])
+      @procedures = Procedure.where('name LIKE ? and status LIKE ?', "%#{params[:search]}%",'approved')
+      @bills = Bill.where(:procedure_id =>[@procedures])
     else
-	    @bills = Bill.all
+      @bills = Bill.where(status:'approved')
     end
   end
  
