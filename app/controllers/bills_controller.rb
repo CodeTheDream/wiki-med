@@ -1,8 +1,10 @@
+
 class BillsController < ApplicationController 
   # restricts access to update, edit and destroy to admins
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # loads all bills to pass into view
+
   def index
     if params[:search]
     @procedures = Procedure.where('name LIKE ?', "%#{params[:search]}%")
@@ -14,7 +16,7 @@ class BillsController < ApplicationController
  
   # creates a new bill with nested items to pass into view
   def new
-    @bill = Bill.new
+   @bill = Bill.new
     @bill.items.build
   end 
  
@@ -23,6 +25,8 @@ class BillsController < ApplicationController
   def create
     @bill = Bill.new(bill_params)
     @bill.status = "pending"
+
+
     @bill.price = total(@bill)
     @bill.save
     if (user_signed_in?)
@@ -79,6 +83,13 @@ class BillsController < ApplicationController
     @bill.destroy
     redirect_to admins_path
   end
+  
+  def common
+    @count_of_procedure =Bill.group(:procedure_id).count
+    @procedures = Procedure.all
+    @bills = Bill.all
+    
+  end
 
   private
   
@@ -96,5 +107,6 @@ class BillsController < ApplicationController
     end
     return sum
   end
+  
  
 end

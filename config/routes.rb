@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :facilities
   resources :bills do
-    collection do
+  collection do
       get 'quick_new' => 'bills#quick_new'
+      get 'common'
       post 'quick_create' => 'bills#quick_create'
+      get 'common'
     end
   end
   resources :procedures
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
       get 'signup'
     end
   end
-  
+ 
  root "facilities#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

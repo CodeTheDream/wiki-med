@@ -11,3 +11,4 @@ class Bill < ActiveRecord::Base
 
 end
 
+#This file has applicationRecord instead of ActiveRecord:: Base 
