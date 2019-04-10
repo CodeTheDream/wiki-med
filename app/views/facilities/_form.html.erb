@@ -1,0 +1,31 @@
+<div class="form-group">
+  <%= form_for @facility do |p| %>
+    <div>
+      <%= p.label :name %>:
+      <%= p.text_field :name %>
+    </div> 
+    <div>
+      <%= p.label :street %>:
+      <%= p.text_field :street %>
+    </div> 
+    <div>
+      <%= p.label :city %>:
+      <%= p.text_field :city %>
+    </div> 
+    <div>
+      <%= p.label :state %>:
+      <%= p.text_field :state %>
+    </div> 
+    <div>
+      <%= p.label :zip %>:
+      <%= p.text_field :zip %>
+    </div> 
+    <div>
+      <%= p.label :specialty %>:
+      <%= p.text_field :specialty %>
+    </div> 
+    <div>
+      <%= p.submit "Submit"%>
+    </div>
+  </div>
+<%end%>

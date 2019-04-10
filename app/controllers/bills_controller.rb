@@ -7,16 +7,16 @@ class BillsController < ApplicationController
 
   def index
     if params[:search]
-    @procedures = Procedure.where('name LIKE ?', "%#{params[:search]}%")
-	  @bills = Bill.where(:procedure_id =>[@procedures])
+      @procedures = Procedure.where('name LIKE ? and status LIKE ?', "%#{params[:search]}%",'approved')
+      @bills = Bill.where(:procedure_id =>[@procedures])
     else
-	    @bills = Bill.all
+      @bills = Bill.where(status:'approved')
     end
   end
  
   # creates a new bill with nested items to pass into view
   def new
-   @bill = Bill.new
+    @bill = Bill.new
     @bill.items.build
   end 
  
@@ -85,10 +85,9 @@ class BillsController < ApplicationController
   end
   
   def common
-    @count_of_procedure =Bill.group(:procedure_id).count
+    @count_of_procedure = Bill.group(:procedure_id).count
     @procedures = Procedure.all
     @bills = Bill.all
-    
   end
 
   private

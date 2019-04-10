@@ -5,13 +5,10 @@
     </h1>
   </div>
 
-  <h4 class="text-center p-2">Search</h4>
-
-<%= link_to  "New Item",new_item_path, class:'btn btn-primary btn-sm btn-block' %>
 <div class="album py-5 bg-light">
   <div class="container">
      <div class="row">
-      <%= @items.each do |item|%>
+      <% @items.each do |item|%>
       <div class="col-md-3">
         <div class="card mb-3">
           <div class="card-header"><%=item.name%></div>

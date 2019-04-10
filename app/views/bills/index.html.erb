@@ -1,30 +1,56 @@
-<main role="main">
+
   <div class="container border border-secondary rounded-lg mt-3">
     <h1 class="text-center">
-        Bills
+        Recent Bills
     </h1>
   </div>
-
-
-
-<%= link_to  "Input Detailed Billing Information", new_bill_path, class:'btn btn-primary btn-sm btn-block' %>
-
-<%= link_to  "Input Quick Billing Information", quick_new_bills_url, class:'btn btn-primary btn-sm btn-block' %>
-
+  
+  <div class="p-2">
+    <%= link_to  "Input Detailed Billing Information", new_bill_path, class:'btn btn-active btn-primary btn-sm btn-block' %>
+    <%= link_to  "Input Quick Billing Information", quick_new_bills_url, class:'btn btn-active btn-info btn-sm btn-block' %>
+  </div>
 
 <% if params[:search].present? %>
   <h4 class="text-center p-2"><%= @bills.length%> results for your search for <%=params[:search] %></h4>
 <% end %>
 
-<% @bills.each do |f|%>
-    <div>
-      <%= f.facility.name %> <%= f.date %> <%= f.procedure.name %> $<%= f.price %>
-      <div>
-        <% f.items.each do |item| %>
-          <%= item.name %>
-          <%= item.price %>
-        <% end %>
+<div class="album py-5 bg-light">
+  <div class="container">
+     <div class="row">
+      <% @bills.each do |bill|%>
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <a href ="/procedures/<%=bill.procedure.id%>">
+            <div class="card-header text-center">
+              <h3><%= bill.procedure.name.titleize %></h3>
+          </a>
+              <h6 class="card-subtitle mb-2 text-muted"> <%= bill.date.strftime("%e %B %Y") %></h6>
+            </div>
+          <div class="card-body" align='left p-1'>
+            <h5>
+              <%= bill.facility.name %>
+            </h5>
+            <% bill.items.each do |item| %>
+              <div class="row">
+                <div class="col-7 text-left"><%= item.name %></div>
+                <div class="col-5 text-right">$<%= number_with_precision(item.price.round(2), :precision => 2) %></div>
+              </div>
+            <% end %>
+            <div class="row font-weight-bold">
+              <div class="col-6 text-left">Total:</div>
+              <div class="col-6 text-right">$<%= number_with_precision(bill.price.round(2), :precision => 2) %></div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="btn-group p-2">
+                <%= link_to "View", bill_path(bill), class:"align-middle btn btn-sm btn-outline-primary"%>
+              </div>
+            </div>
+            
+          </div>
+          <h6 class="card-subtitle text-right text-muted"> Submitted: <%= bill.created_at.strftime("%H:%M") %></h6>
+        </div>
       </div>
+    <%end%>
     </div>
-<%end%>
-</main>
+  </div>
+</div>

@@ -8,7 +8,5 @@ class Bill < ActiveRecord::Base
   include Humanizer
   require_human_on [:create, :quick_create]
 
-
 end
 
-#This file has applicationRecord instead of ActiveRecord:: Base 

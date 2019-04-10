@@ -1,5 +1,7 @@
 <%= form_for @procedure do |p| %>
-  <%= p.text_field :name, placeholder: "Name" %>
-  <%= p.text_area :description, placeholder: "Description" %>
-  <%= p.submit "Submit"%>
+  <%= p.label :name %>
+  <%= p.text_field :name %>
+  <%= p.label :description %>
+  <%= p.text_field :description %>
+  <%= p.submit "Submit", class:'align-center'%>
 <%end%>

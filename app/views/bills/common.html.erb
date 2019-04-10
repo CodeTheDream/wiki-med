@@ -7,10 +7,10 @@
     <div>Minimum price: $<%=sprintf "%.2f",current_bill.minimum(:price) %></div>
     <div>Maximum price: $<%=sprintf "%.2f",current_bill.maximum(:price) %></div>
     <div>Average price: $<%=sprintf "%.2f",current_bill.average(:price)%></div>
-    
+
     Procedures happened at these places:
     <%current_bill.each do |bill|%>
       <%=bill.facility.name%>
     <%end%>
   </div>
-<% end %>
+<% end %> 
