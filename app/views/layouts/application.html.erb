@@ -19,7 +19,12 @@
         </li>
         <li class= "nav-item">
           <a href="/bills/common" class="nav-link">Common Procedures</a>
-        </li>
+	</li>
+	<% if (user_signed_in?) %>
+          <li class= "nav-item">
+          <a href="/admins" class="nav-link">Admin Home</a>
+          </li>
+	<% end %>
         
       </ul>
           <%= form_tag(bills_path,method: :get, class: "form-inline")do %>
