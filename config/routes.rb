@@ -4,15 +4,15 @@ Rails.application.routes.draw do
   resources :facilities
   resources :bills do
   collection do
-    get 'common'
+      get 'quick_new' => 'bills#quick_new'
+      get 'common'
+      post 'quick_create' => 'bills#quick_create'
+    end
   end
-end
   resources :procedures
   resources :items
   resources :admins do
     member do
-      post 'approve_procedure'
-      post 'approve_item'
       post 'approve_bill'
     end
     

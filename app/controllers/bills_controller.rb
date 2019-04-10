@@ -6,7 +6,12 @@ class BillsController < ApplicationController
   # loads all bills to pass into view
 
   def index
-    @bills = Bill.all
+    if params[:search]
+    @procedures = Procedure.where('name LIKE ?', "%#{params[:search]}%")
+	  @bills = Bill.where(:procedure_id =>[@procedures])
+    else
+	    @bills = Bill.all
+    end
   end
  
   # creates a new bill with nested items to pass into view
@@ -15,8 +20,8 @@ class BillsController < ApplicationController
     @bill.items.build
   end 
  
-  # saves a new bill and sets status to 'pending' and redirects to adm
-  # in page if user is logged in
+  # saves a new bill and sets status to 'pending' and redirects to 
+  # admin page if user is logged in
   def create
     @bill = Bill.new(bill_params)
     @bill.status = "pending"
@@ -29,8 +34,29 @@ class BillsController < ApplicationController
     else
       redirect_to root_url
     end
-
   end
+
+  # creates a new bill with nested items to pass into view
+  def quick_new
+    @bill = Bill.new
+    @bill.items.build
+  end
+
+  # saves a new bill and sets status to 'pending' and redirects to
+  # landing page
+  def quick_create
+    @bill = Bill.new(bill_params)
+    @bill.status = "pending"
+    @bill.price = total(@bill)
+    @bill.save
+    if (user_signed_in?)
+      redirect_to admins_url
+    else
+      redirect_to root_url
+    end
+  end
+
+
 
   # creates an instance variable for an existing bill to edit
   # available only to admins
@@ -67,7 +93,7 @@ class BillsController < ApplicationController
   
   # limits params accepted to create/update a bill
   def bill_params
-    params.require(:bill).permit(:date, :facility_id, :procedure_id, items_attributes:[:name, :description, :price, :id, :_destroy])
+    params.require(:bill).permit(:humanizer_answer, :humanizer_question_id, :date, :facility_id, :procedure_id, items_attributes:[:name, :description, :price, :id, :_destroy])
   end
 
   # passes in a bill and sums up the costs of all that bill's items.  
