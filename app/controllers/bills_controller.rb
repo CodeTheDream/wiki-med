@@ -57,7 +57,7 @@ class BillsController < ApplicationController
   end
   
   def common
-    @countOfProcedure =Bill.group(:procedure_id).count
+    @count_of_procedure =Bill.group(:procedure_id).count
     @procedures = Procedure.all
     @bills = Bill.all
     
