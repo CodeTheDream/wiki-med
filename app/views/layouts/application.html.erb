@@ -20,6 +20,14 @@
         <li class= "nav-item">
           <a href="/facilities" class="nav-link">Facilities</a>
         </li>
+        
+      </ul>
+          <%= form_tag(bills_path,method: :get, class: "form-inline")do %>
+	         <%=text_field_tag(:search, params[:search],placeholder: 'Search Bill by Procedure',class: "form-control mr-sm-1")%>
+	         <%=submit_tag ("Search"),name: nil%>
+	       <%end%>
+        
+        
   </nav>
   <style>
 
