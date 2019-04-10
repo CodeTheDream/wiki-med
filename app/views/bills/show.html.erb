@@ -1,0 +1,11 @@
+<div>
+  <%= @bill.facility.name %>
+  <%= @bill.date %>
+  <%= @bill.procedure.name %>
+  <%= @bill.price %>
+</div>
+
+<% @bill.items.each do |item| %>
+  <%= item.name %>
+  <%= item.price %>
+<% end %>
