@@ -52,8 +52,6 @@ class BillsController < ApplicationController
     end
   end
 
-
-
   # creates an instance variable for an existing bill to edit
   # available only to admins
   def edit
@@ -69,7 +67,11 @@ class BillsController < ApplicationController
     @bill.save
     redirect_to admins_url
   end
- 
+
+  # creates an instance variable to pass into the show view
+  def show
+    @bill = Bill.find(params[:id])
+  end 
   
   # destroys an existing bill
   def destroy
