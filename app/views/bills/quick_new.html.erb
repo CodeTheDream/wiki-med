@@ -1,0 +1,35 @@
+<%= form_for @bill do |f| %>
+  <h1>Enter Billing Info Below</h1>
+  <%= f.label :date %>
+  <%= f.date_field :date, placeholder: 'Date of Procedure' %>
+  <div>
+    <%= collection_select(:bill, :procedure_id, Procedure.all, :id, :name, prompt: true) %>
+    <%= link_to "Add Procedure", new_procedure_path %>
+    <%= mail_to "lljackson1031@gmail.com" do %>
+      <div>
+        If 'other', Email Admin Here
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= collection_select(:bill, :facility_id, Facility.all, :id, :name, prompt: true) %>
+    <%= link_to  "Add Facility", new_facility_path %>
+  </div>
+  <%= f.fields_for :items do |item| %>
+    <%= item.hidden_field :name, value: 'none' %>
+
+    <%= item.hidden_field :description, value: 'none' %>
+
+    <%= item.label :price %>
+    <%= item.number_field :price, min: 0, step: 0.01 %>
+
+  <% end %>
+  <div>
+    <%= f.label :humanizer_answer, @bill.humanizer_question %>
+    <%= f.text_field :humanizer_answer %>
+    <%= f.hidden_field :humanizer_question_id %>
+  </div>  
+  <%= f.submit "Submit Bill" %>
+
+  <div><%= link_to "Back", root_path, class:"btn btn-sm btn-outline-danger"%></div>
+<% end %>

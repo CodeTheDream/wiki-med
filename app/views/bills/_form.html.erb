@@ -27,7 +27,12 @@
       </div>
       <p class="count">Total: <span><%= @bill.items.count %></span></p>
     </div>
-    <%= f.submit "Submit Bill" %>
-  <% end %>
-</container>
+  </div>
+  <div>
+    <%= f.label :humanizer_answer, @bill.humanizer_question %>
+    <%= f.text_field :humanizer_answer %>
+    <%= f.hidden_field :humanizer_question_id %>
+  </div>
+  <%= f.submit "Submit Bill" %>
+<% end %>
 

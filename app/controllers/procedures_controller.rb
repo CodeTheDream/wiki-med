@@ -1,5 +1,7 @@
 class ProceduresController < ApplicationController
+  # restricts access to new, create, update, edit and destroy to admins
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
   #Currently shows all Procedures
   def index
     @procedures = Procedure.all
