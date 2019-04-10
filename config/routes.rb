@@ -3,16 +3,16 @@ Rails.application.routes.draw do
   devise_for :users
   resources :facilities
   resources :bills do
-  collection do
-    get 'common'
+    collection do
+      get 'quick_new' => 'bills#quick_new'
+      post 'quick_create' => 'bills#quick_create'
+      get 'common'
+    end
   end
-end
   resources :procedures
   resources :items
   resources :admins do
     member do
-      post 'approve_procedure'
-      post 'approve_item'
       post 'approve_bill'
     end
     
