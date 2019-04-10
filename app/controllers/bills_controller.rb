@@ -4,7 +4,12 @@ class BillsController < ApplicationController
 
   # loads all bills to pass into view
   def index
-    @bills = Bill.all
+    if params[:search]
+    @procedures = Procedure.where('name LIKE ?', "%#{params[:search]}%")
+	  @bills = Bill.where(:procedure_id =>[@procedures])
+    else
+	    @bills = Bill.all
+    end
   end
  
   # creates a new bill with nested items to pass into view
