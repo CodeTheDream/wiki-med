@@ -4,34 +4,20 @@
   </h1>
 </div>
 
-<div class="album py-5 bg-light">
-  <div class="container">
-     <div class="row">
-      <div class="col-md-6">
-        <div class="card mb-6">
-          <div class="card-header text-center">
-            <h5><%=@facility.name%></h5>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-4 text-left">Street:</div>
-              <div class="col-8 text-right"><%= @facility.street %></div>
-	      <div class="col-4 text-left">City:</div>
-              <div class="col-8 text-right"><%= @facility.city %></div>
-              <div class="col-4 text-left">State:</div>
-              <div class="col-8 text-right"><%= @facility.state %></div>
-              <div class="col-4 text-left">Zip:</div>
-              <div class="col-8 text-right"><%= @facility.zip %></div>
-              <div class="col-4 text-left">Specialty:</div>
-              <div class="col-8 text-right"><%= @facility.specialty %></div>
-	    </div>
-          </div>
-          <div class="card footer justify-content-center">
-          </div>
 
-        </div>
+<div class="mx-auto p-3" style="width: 50%;">
+  <div class="card mb-6">
+    <div class="card-header text-center">
+      <h4>Facility Information</h4>
+    </div>
+    <div class="card-body align-middle">
+      <div class="row"> 
+        <h5>Address: </h5><%= @facility.street %> <%= @facility.city %>, <%= @facility.state %> <%= @facility.zip %>
+      </div>
+      <div class="row">
+        <h5>Specialty: </h5><%= @facility.specialty%>
       </div>
     </div>
+      <%= link_to "Back", facilities_path, class:"btn btn-primary btn-sm align-middle"%>
   </div>
 </div>
-

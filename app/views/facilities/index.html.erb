@@ -7,14 +7,26 @@
 
 <!--<div class='p-2'><%= link_to  "New Facility",new_facility_path, class:'btn btn-primary btn-sm btn-block' %></div>-->
 
-<ul class="list-group row">
-  <% @facilities.each do |f|%>
-  <a href="/facilities/<%=f.id%>" class="list-group-item list-group-item-action col-4">
-    <h4 class=''><%=f.name%></h4>
-    <h6><%= f.specialty %></h6>
-      <div>
-        <%= f.city %>, <%= f.state %> <%= f.zip %>
-      </div> 
-  </a>
-</ul>
-<%end%>
+<div class="album py-5 bg-light">
+  <div class="container">
+     <div class="row">
+      <% @facilities.each do |f|%>
+      <div class="col-4">
+        <div class="card mb-2">
+          <a href ="/facilities/<%=f.id%>">
+            <div class="card-header text-center">
+              <h4><%= f.name.titleize %></h4>
+          </a>
+            </div>
+          <div class="card-body">
+            <h6>Specialty: <%= f.specialty %></h6>
+            <div>
+              <%= f.city %>, <%= f.state %> <%= f.zip %>
+            </div> 
+          </div>
+        </div>
+      </div>
+    <%end%>
+    </div>
+  </div>
+</div>
