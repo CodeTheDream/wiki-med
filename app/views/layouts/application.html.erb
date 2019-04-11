@@ -10,29 +10,26 @@
     <a href="/" class="navbar-brand d-flex align-items-center">
       <strong>WikiMed</strong>
     </a>
-      <ul class= "navbar-nav mr-auto">
-        <li class= "nav-item">
-          <a href="/bills" class="nav-link">Recent Bills</a>
-        </li>
-        <li class= "nav-item">
-          <a href="/facilities" class="nav-link">Facilities</a>
-        </li>
-        <li class= "nav-item">
-          <a href="/bills/common" class="nav-link">Common Procedures</a>
-	</li>
-	<% if (user_signed_in?) %>
-          <li class= "nav-item">
-          <a href="/admins" class="nav-link">Admin Home</a>
-          </li>
-	<% end %>
-        
-      </ul>
-          <%= form_tag(bills_path,method: :get, class: "form-inline")do %>
-	         <%=text_field_tag(:search, params[:search],placeholder: 'Search by Procedure',class: "form-control mr-sm-1")%>
-	         <%=submit_tag ("Search"),name: nil%>
-	       <%end%>
-        
-        
+    <ul class= "navbar-nav mr-auto">
+      <li class= "nav-item">
+        <a href="/bills" class="nav-link">Recent Bills</a>
+      </li>
+      <li class= "nav-item">
+        <a href="/facilities" class="nav-link">Facilities</a>
+      </li>
+      <li class= "nav-item">
+        <a href="/bills/common" class="nav-link">Common Procedures</a>
+      </li>
+    <% if (user_signed_in?) %>
+      <li class= "nav-item">
+        <a href="/admins" class="nav-link">Admin Home</a>
+      </li>
+    <% end %>
+    </ul>
+    <%= form_tag(bills_path,method: :get, class: "form-inline")do %>
+       <%=text_field_tag(:search, params[:search],placeholder: 'Search by Procedure',class: "form-control mr-sm-1")%>
+       <%=submit_tag ("Search"),name: nil%>
+     <%end%>
   </nav>
   <style>
     .rgba-gradient {
@@ -58,20 +55,24 @@
   </style>
 </head>
 <body>
-<div class="ml-3">
+  <main roll="main" class="flex-shrink-1">
+      <div class="container">
+        <% flash.each do |message_type, message| %>
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}")%>
+        <% end %>
+      </div>
+    <%= yield %>
+</main>
+<footer class="card-footer bg-muted footer-font-style fixed-bottom text-right">
   <div class="container">
-    <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{message_type}")%>
-    <% end %>
-  </div>
-<%= yield %>
-</div>
-<footer class="card-footer text-muted text-right">
-    <% if user_signed_in? %>
+    <span class="text muted">
+      <% if user_signed_in? %>
         <%= link_to('Logout', destroy_user_session_path, method: :delete, class:"btn btn-outline-primary") %>
       <% else %>
         <%=link_to('Login', new_user_session_path, class:"btn btn-outline-primary")  %>
       <% end %>
+    </span>
+  </div>
 </footer>
 </body>
 </html>

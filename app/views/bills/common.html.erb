@@ -1,16 +1,36 @@
-<h4> Common Procedures </h4>
+<div class="container border border-secondary rounded-lg mt-3">
+  <h1 class="text-center">
+      Common Procedures
+  </h1>
+</div>
 
-<% @count_of_procedure.each do |procedure|%>
-  <div>
-  <h5>  <%= @procedures.find(procedure[0]).name %></h5> Occuried <%= procedure[1] %> times
-    <%current_bill = @bills.where(procedure_id: procedure[0])%>
-    <div>Minimum price: $<%=sprintf "%.2f",current_bill.minimum(:price) %></div>
-    <div>Maximum price: $<%=sprintf "%.2f",current_bill.maximum(:price) %></div>
-    <div>Average price: $<%=sprintf "%.2f",current_bill.average(:price)%></div>
-
-    Procedures happened at these places:
-    <%current_bill.each do |bill|%>
-      <%=bill.facility.name%>
+<div class="album py-5 bg-light">
+  <div class="container">
+     <div class="row">
+      <% @count_of_procedure.each do |procedure|%>
+      <div class="col-4">
+        <div class="card mb-2">
+          <a href ="/procedures/<%=procedure[0]%>">
+            <div class="card-header text-center">
+              <h3><%= @procedures.find(procedure[0]).name.titleize %></h3>
+          </a>
+          <h6 class="card-subtitle mb-2 text-muted"> Occuried <%= procedure[1] %> times</h6>
+            </div>
+          <div class="card-body" align='left p-1'>
+            <%current_bill = @bills.where(procedure_id: procedure[0])%>
+            <div>Minimum price: $<%=sprintf "%.2f",current_bill.minimum(:price) %></div>
+            <div>Maximum price: $<%=sprintf "%.2f",current_bill.maximum(:price) %></div>
+            <div>Average price: $<%=sprintf "%.2f",current_bill.average(:price)%></div>
+          </div>
+          <div class="text-muted p-1">
+            Recorded at:
+            <%current_bill.each do |bill|%>
+              <div><%=bill.facility.name%></div>
+            <%end%>
+          </div>
+        </div>
+      </div>
     <%end%>
+    </div>
   </div>
-<% end %> 
+</div>

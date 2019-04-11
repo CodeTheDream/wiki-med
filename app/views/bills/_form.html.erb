@@ -1,33 +1,36 @@
 <container class="pl-3">
   <%= form_for @bill do |f| %>
-    <%= f.label :date %>:
-    <%= f.date_field :date, placeholder: 'Date of Procedure' %>
-    <div>
+    <div class="p-1">
+      <%= f.label :date %>:
+      <%= f.date_field :date, placeholder: 'Date of Procedure' %>
+    </div>
+    <div class="p-1">
       <%= f.label :procedure %>:
       <%= collection_select(:bill, :procedure_id, Procedure.all, :id, :name, prompt: true) %>
-      <%= link_to "Add Procedure", new_procedure_path, class:'btn-sm btn-warning' %>
+      <%= link_to "Add Procedure", new_procedure_path, class:'btn-sm btn-info' %>
       <%= mail_to "lljackson1031@gmail.com" do %>
-        <div>
+        <div class="mb-2 ml-4">
           If 'other', Email Admin Here
         </div>
       <% end %>
     </div>
-    <div>
+    <div class="p-1">
       <%= f.label :facility %>:
       <%= collection_select(:bill, :facility_id, Facility.all, :id, :name, prompt: true) %>
-      <%= link_to  "Add Facility", new_facility_path, class:'btn-sm btn-warning' %>
+      <%= link_to  "Add Facility", new_facility_path, class:'btn-sm btn-info' %>
     </div>
-    <h3>Items</h3>
+    <div class="row mt-3">
+      <h3 class="col-1">Items</h3>
+      <div class="ml-1">
+        <%= link_to_add_association 'Add Item', f, :items, class:'btn btn-primary btn-sm' %>
+      </div>
+    </div>
     <div id='items'>
       <%= f.fields_for :items do |item| %>
          <%= render 'item_fields', f: item %>
       <% end %>
-      <div class='links'>
-        <%= link_to_add_association 'Add Item', f, :items, class:'btn btn-primary m-2' %>
-      </div>
-
     </div>
-  <div>
+  <div class="my-3">
     <%= f.label :humanizer_answer, @bill.humanizer_question %>
     <%= f.text_field :humanizer_answer %>
     <%= f.hidden_field :humanizer_question_id %>
