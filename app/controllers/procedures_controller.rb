@@ -33,7 +33,7 @@ class ProceduresController < ApplicationController
   # passes a single procedure to the show view
   def show
     @procedure = Procedure.find(params[:id])
-    @bills = Bill.all    
+    @bills = Bill.all
   end
 
   #destroy database entry -- only available to admin

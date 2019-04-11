@@ -1,11 +1,33 @@
-<div>
-  <%= @bill.facility.name %>
-  <%= @bill.date %>
-  <%= @bill.procedure.name %>
-  <%= @bill.price %>
+<div class="container border border-secondary rounded-lg mt-3">
+  <h1 class="text-center">
+    <%= @bill.procedure.name %>
+  </h1>
 </div>
 
-<% @bill.items.each do |item| %>
-  <%= item.name %>
-  <%= item.price %>
-<% end %>
+<div class="card mt-3 mx-auto" style="width: 50%;">
+  <div class="card-header">
+    Completed at: <%= @bill.facility.name %>
+  </div>
+  <div class="card-body">
+    <div class="card-title">Date: <%= @bill.date %> </div>
+    <p class="card-text">
+      <ul class="list-group list-group-flush">
+        <%@bill.items.each do |item| %>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-7 text-left"><%= item.name %></div>
+            <div class="col-5 text-right"><%= number_to_currency(item.price) %></div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+    </p>
+    <div class="row">
+      <div class="col-7 text-left">Total:</div>
+      <div class="col-5 text-right"><%= number_to_currency(@bill.price) %></div>
+    </div>
+    <div class="py-2">
+      <%= link_to "All Bills", bills_path, class:"btn btn-outline-primary"%>
+    </div>
+  </div>
+</div>
