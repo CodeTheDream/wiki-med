@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>Wikimed</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -22,14 +22,16 @@
         <li class= "nav-item">
           <a href="/bills/common" class="nav-link">Common Procedures</a>
         </li>
-        
+	        <% if (user_signed_in?) %>
+            <li class= "nav-item">
+              <a href="/admins" class="nav-link">Admin Home</a>
+            </li>
+	        <% end %>
       </ul>
           <%= form_tag(bills_path,method: :get, class: "form-inline")do %>
 	         <%=text_field_tag(:search, params[:search],placeholder: 'Search by Procedure',class: "form-control mr-sm-1")%>
 	         <%=submit_tag ("Search"),name: nil%>
 	       <%end%>
-        
-        
   </nav>
   <style>
     .rgba-gradient {
@@ -52,7 +54,6 @@
     .btn-primary.btn-outline {
         color: #428bca;
     }
-    
   </style>
 </head>
 <body>

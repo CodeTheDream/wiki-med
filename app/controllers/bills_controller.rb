@@ -1,14 +1,23 @@
+
 class BillsController < ApplicationController 
   # restricts access to update, edit and destroy to admins
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   # loads all bills to pass into view
+
   def index
     if params[:search]
+<<<<<<< HEAD
     @procedures = Procedure.where('name LIKE ? and status LIKE ?', "%#{params[:search]}%",'approved')
 	  @bills = Bill.where(:procedure_id =>[@procedures])
     else
 	    @bills = Bill.where(status:'approved')
+=======
+      @procedures = Procedure.where('name LIKE ? and status LIKE ?', "%#{params[:search]}%",'approved')
+      @bills = Bill.where(:procedure_id =>[@procedures])
+    else
+      @bills = Bill.where(status:'approved')
+>>>>>>> master
     end
   end
  
@@ -23,6 +32,8 @@ class BillsController < ApplicationController
   def create
     @bill = Bill.new(bill_params)
     @bill.status = "pending"
+
+
     @bill.price = total(@bill)
     @bill.save
     if (user_signed_in?)
@@ -85,7 +96,7 @@ class BillsController < ApplicationController
     @procedures = Procedure.all
     @bills = Bill.all
   end
-  
+
   private
   # limits params accepted to create/update a bill
   def bill_params
@@ -101,5 +112,4 @@ class BillsController < ApplicationController
     end
     return sum
   end
-  
 end
