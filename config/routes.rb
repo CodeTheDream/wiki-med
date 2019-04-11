@@ -6,15 +6,16 @@ Rails.application.routes.draw do
     collection do
       get 'quick_new' => 'bills#quick_new'
       post 'quick_create' => 'bills#quick_create'
+      get 'common'=> 'bills#common'
     end
   end
-  resources :procedures
+  resources :procedures 
   resources :items
   resources :admins do
     member do
       post 'approve_bill'
     end
-    
+
     collection do
       get 'show_pending_bills'
       get 'show_bills'	    
@@ -25,7 +26,8 @@ Rails.application.routes.draw do
     end
   end
   
- root "facilities#index"
+ root "static_page#home"
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -79,5 +81,4 @@ Rails.application.routes.draw do
   #     # Directs /admin/products/* to Admin::ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
-  #   end
-end
+#   end

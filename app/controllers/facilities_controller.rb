@@ -34,8 +34,10 @@ class FacilitiesController < ApplicationController
     @facility.update(facilities_params)
     redirect_to admins_url
   end
-    
+  
+  # creates an instance variable to pass into the show view
   def show
+    @facility = Facility.find(params[:id])
   end
   
   # deletes an existing facility -- only available to admins  

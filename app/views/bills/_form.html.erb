@@ -25,9 +25,8 @@
       <div class='links'>
         <%= link_to_add_association 'Add Item', f, :items, class:'btn btn-primary m-2' %>
       </div>
-      <p class="count">Total: <span><%= @bill.items.count %></span></p>
+
     </div>
-  </div>
   <div>
     <%= f.label :humanizer_answer, @bill.humanizer_question %>
     <%= f.text_field :humanizer_answer %>

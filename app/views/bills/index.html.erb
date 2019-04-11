@@ -1,7 +1,7 @@
-<main role="main">
+
   <div class="container border border-secondary rounded-lg mt-3">
     <h1 class="text-center">
-        Bills
+        Recent Bills
     </h1>
   </div>
 
@@ -15,7 +15,7 @@
 <div class="album py-5 bg-light">
   <div class="container">
      <div class="row">
-      <%= @bills.each do |bill|%>
+      <% @bills.each do |bill|%>
       <div class="col-md-3">
         <div class="card mb-3">
           <a href ="/procedures/<%=bill.procedure.id%>">
@@ -30,24 +30,26 @@
             </h5>
             <% bill.items.each do |item| %>
               <div class="row">
-                <div class="col-8 text-left"><%= item.name %></div>
-                <div class="col-4 text-right">$<%= item.price %></div>
+                <div class="col-7 text-left"><%= item.name %></div>
+                <div class="col-5 text-right">$<%= number_with_precision(item.price.round(2), :precision => 2) %></div>
               </div>
             <% end %>
             <div class="row font-weight-bold">
-              <div class="col-7 text-left">Total:</div>
-              <div class="col-5 text-right">$<%= bill.price %></div>
+              <div class="col-6 text-left">Total:</div>
+              <div class="col-6 text-right">$<%= number_with_precision(bill.price.round(2), :precision => 2) %></div>
             </div>
             <div class="d-flex justify-content-center align-items-center">
-              <div class="btn-group">
+              <div class="btn-group p-2">
                 <%= link_to "View", bill_path(bill), class:"align-middle btn btn-sm btn-outline-primary"%>
               </div>
             </div>
+            
           </div>
+          <h6 class="card-subtitle text-right text-muted"> Submitted: <%= bill.created_at.strftime("%H:%M") %></h6>
         </div>
       </div>
     <%end%>
     </div>
   </div>
 </div>
-</main>
+

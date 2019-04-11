@@ -5,19 +5,16 @@
     </h1>
   </div>
 
-  <h4 class="text-center p-2">Search</h4>
-
-<%= link_to  "New Facility",new_facility_path, class:'new_entry' %>
-
+<div class='p-2'><%= link_to  "New Facility",new_facility_path, class:'btn btn-primary btn-sm btn-block' %></div>
 
 <ul class="list-group row">
   <% @facilities.each do |f|%>
   <a href="/facilities/<%=f.id%>" class="list-group-item list-group-item-action col-4">
     <h4 class=''><%=f.name%></h4>
-    <h6><%=f.specialty%></h6>
-    <div>
-      <%=f.city%>, <%=f.state%>
-    </div>
+    <h6><%= f.specialty %></h6>
+      <div>
+        <%= f.city %>, <%= f.state %> <%= f.zip %>
+      </div> 
   </a>
 </ul>
-  <%end%>
+<%end%>

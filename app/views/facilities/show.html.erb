@@ -1,0 +1,37 @@
+<div class="container border border-secondary rounded-lg mt-3">
+  <h1 class="text-center">
+    <%= @facility.name.titleize %>
+  </h1>
+</div>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+     <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-6">
+          <div class="card-header text-center">
+            <h5><%=@facility.name%></h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4 text-left">Street:</div>
+              <div class="col-8 text-right"><%= @facility.street %></div>
+	      <div class="col-4 text-left">City:</div>
+              <div class="col-8 text-right"><%= @facility.city %></div>
+              <div class="col-4 text-left">State:</div>
+              <div class="col-8 text-right"><%= @facility.state %></div>
+              <div class="col-4 text-left">Zip:</div>
+              <div class="col-8 text-right"><%= @facility.zip %></div>
+              <div class="col-4 text-left">Specialty:</div>
+              <div class="col-8 text-right"><%= @facility.specialty %></div>
+	    </div>
+          </div>
+          <div class="card footer justify-content-center">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
