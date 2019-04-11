@@ -5,7 +5,7 @@
     <div>
       <%= f.label :procedure %>:
       <%= collection_select(:bill, :procedure_id, Procedure.all, :id, :name, prompt: true) %>
-      <%= link_to "Add Procedure", new_procedure_path, class:'btn-sm btn-warning' %>
+      <!--<%= link_to "Add Procedure", new_procedure_path, class:'btn-sm btn-warning' %>-->
       <%= mail_to "lljackson1031@gmail.com" do %>
         <div>
           If 'other', Email Admin Here
