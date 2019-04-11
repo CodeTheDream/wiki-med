@@ -16,7 +16,7 @@
         <li class="list-group-item">
           <div class="row">
             <div class="col-7 text-left"><%= item.name %></div>
-            <div class="col-5 text-right"><%= number_with_precision(item.price.round(2), :precision => 2) %></div>
+            <div class="col-5 text-right"><%= number_to_currency(item.price) %></div>
           </div>
         </li>
         <% end %>
@@ -24,7 +24,7 @@
     </p>
     <div class="row">
       <div class="col-7 text-left">Total:</div>
-      <div class="col-5 text-right"><%= number_with_precision(@bill.price.round(2), :precision => 2) %></div>
+      <div class="col-5 text-right"><%= number_to_currency(@bill.price) %></div>
     </div>
     <div class="py-2">
       <%= link_to "All Bills", bills_path, class:"btn btn-outline-primary"%>

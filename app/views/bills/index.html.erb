@@ -17,7 +17,7 @@
   <div class="container">
      <div class="row">
       <% @bills.each do |bill|%>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="card mb-3">
           <a href ="/procedures/<%=bill.procedure.id%>">
             <div class="card-header text-center">
@@ -31,13 +31,13 @@
             </h5>
             <% bill.items.each do |item| %>
               <div class="row">
-                <div class="col-7 text-left"><%= item.name %></div>
-                <div class="col-5 text-right">$<%= number_with_precision(item.price.round(2), :precision => 2) %></div>
+                <div class="col-5 text-left"><%= item.name %></div>
+                <div class="col-7 text-right"><%= number_to_currency(item.price) %></div>
               </div>
             <% end %>
             <div class="row font-weight-bold">
-              <div class="col-6 text-left">Total:</div>
-              <div class="col-6 text-right">$<%= number_with_precision(bill.price.round(2), :precision => 2) %></div>
+              <div class="col-5 text-left">Total:</div>
+              <div class="col-7 text-right"><%= number_to_currency(bill.price) %></div>
             </div>
             <div class="d-flex justify-content-center align-items-center">
               <div class="btn-group p-2">

@@ -18,9 +18,9 @@
             </div>
           <div class="card-body" align='left p-1'>
             <%current_bill = @bills.where(procedure_id: procedure[0])%>
-            <div>Minimum price: $<%=sprintf "%.2f",current_bill.minimum(:price) %></div>
-            <div>Maximum price: $<%=sprintf "%.2f",current_bill.maximum(:price) %></div>
-            <div>Average price: $<%=sprintf "%.2f",current_bill.average(:price)%></div>
+            <div>Minimum price: <%=number_to_currency(current_bill.minimum(:price)) %></div>
+            <div>Maximum price: <%=number_to_currency(current_bill.maximum(:price)) %></div>
+            <div>Average price: <%=number_to_currency(current_bill.average(:price))%></div>
           </div>
           <div class="text-muted p-1">
             Recorded at:
