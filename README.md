@@ -4,20 +4,20 @@ The goal of WikiMed is to create an open-source platform that allows people to g
 the database. 
 
 ## Set-Up in Terminal
-Install Rails 
-    ```sudo gem install rails```
-Install Gems
-    ```bundle install```
-Migrate the Database
-    ```rake db:migrate```
+Install Rails  
+    ```sudo gem install rails```  
+Install Gems  
+    ```bundle install```  
+Migrate the Database  
+    ```rake db:migrate```  
 
 ### Trouble Shooing
 If this error is displayed:  
 `Environment data not found in the schema.`
 
 Enter this in the terminal:  
-```bin/rails db:environment:set RAILS_ENV=development 
-    rake db:reset```    
+`bin/rails db:environment:set RAILS_ENV=development`  
+`rake db:reset `   
 
 ## Thought Process
 ### Bills 
