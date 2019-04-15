@@ -32,14 +32,14 @@ We decided to not have users sign up to enter billing information so we are not 
 
 ### Users
 Admins are the only users currently. To make a new admin account, you will need to enter the following into the terminal:
-    User.create(email: "a@a.com", password: "asdasd", password_confirmation: "asdasd")  
+    `User.create(email: "a@a.com", password: "asdasd", password_confirmation: "asdasd")`  
 Admins do not have levels, though that might be a possibility in the future.   
 
 ## Admin Duties
 Administrators are tasked with approving all bill entries and entering in new procedures and facilities.  
 There is currently a mail-to link that general users can utilize to submit suggestions for new procedures and facilities.  
-**Future**  
   
+**Future**  
 May want to have a csv export of all Facilities and Procedures so it can be maintained easier and be uploaded periodically. This will allow for mass
 uploads and sorting through the data easier. 
 
