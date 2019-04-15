@@ -13,8 +13,8 @@
             </div>
             <hr class="hr-light my-4 w-75">
             <h4 class="subtext-header mt-2 mb-4">The Best Open-Source for Medical Bill Breakdowns</h4>
-            <a href="/bills/new" class="btn btn-dark btn-outline">Add Detailed Bill</a>
-            <a href="/bills/quick_new" class="btn btn-dark btn-outline">Add Quick Bill</a>
+            <%= link_to 'Add Detailed Bill', new_bill_path, class:'btn btn-dark btn-outline' %>
+            <%= link_to 'Add Quick Bill', quick_new_bills_path, class:'btn btn-dark btn-outline' %>
           </div>
           <!--Grid column-->
         </div>
