@@ -39,6 +39,7 @@ Admins do not have levels, though that might be a possibility in the future.
 Administrators are tasked with approving all bill entries and entering in new procedures and facilities.  
 There is currently a mail-to link that general users can utilize to submit suggestions for new procedures and facilities.  
 **Future**  
+  
 May want to have a csv export of all Facilities and Procedures so it can be maintained easier and be uploaded periodically. This will allow for mass
 uploads and sorting through the data easier. 
 
@@ -46,7 +47,7 @@ uploads and sorting through the data easier.
 Currently items are submitted as individual instances by the general user. This will cause the db to have multiple instances of the same item.  
 *i.e Cotton Balls, Cotton ball, cotton ball, cotton*
 
-**Future**
+**Future**  
 Add Items as a table and have a drop-down menu. This will require a diverse input from the admin, but will reduce duplicates.  
 **--or--**  
 When displaying items, have a sound-like function and sort them through SQL while searching or processing the data. 
