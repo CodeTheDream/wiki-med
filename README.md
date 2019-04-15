@@ -13,8 +13,8 @@ Migrate the Database
 
 ### Trouble Shooing
 If this error is displayed:
-> Environment data not found in the schema.
+    Environment data not found in the schema.
 
-enter this in the terminal  
+Enter this in the terminal  
 `bin/rails db:environment:set RAILS_ENV=development`  
 `rake db:reset`  
