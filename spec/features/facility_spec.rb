@@ -14,16 +14,18 @@ RSpec.feature "Facilities", type: :feature do
       fill_in "State", with: "NC"
       fill_in "Zip", with: "27708"
       fill_in "Specialty", with: "NC"
-      save_screenshot('Third.png')
+      save_screenshot('third.png')
       click_on("Submit")
       sleep 1
+     
+      # checking database
       facility = Facility.first
       expect(facility.name).to(eq('Uncg'))
       save_screenshot('fourth.png')
+
+      # check text on page
+      visit '/facilities'
+      expect(page).to have_content("Uncg")
     end
-#    scenario 'visit /facilities' do
-#      visit '/facilities'
-#      expect(current_path).to eq facilities_path
-#    end
 end
 
