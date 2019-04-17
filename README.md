@@ -19,15 +19,15 @@ Enter this in the terminal:
 `bin/rails db:environment:set RAILS_ENV=development`  
 `rake db:reset `   
 
-## Thought Process
-### Bills 
+## Thought Process  
+### Bills  
 You will see on the landing page there are Quick Bills and Detailed Bills  
 The Detailed Bill collects its price from the total of the Nested Items it has. This will be an issue later on due to rouning errors and if the individual 
 entering the information does not fully submit everything on the bill.  
 The Quick Bill has a singular nested Item, but the name and description are set to none. The Bill is recieving the total price directly from the 
 individual inputting the information.  
 
-## Items
+## Items  
 Currently items are submitted as individual instances by the general user. This will cause the db to have multiple instances of the same item.  
 *i.e Cotton Balls, Cotton ball, cotton ball, cotton*  
 
