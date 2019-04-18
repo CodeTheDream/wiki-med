@@ -4,11 +4,10 @@ RSpec.describe ProceduresController, type: :controller do
 
   context 'when user is logged in' do
     setup do
-      user = User.create()
-      allow(controller).to receive(:authenticate_user!).and_return(true)
-      allow(controller).to receive(:current_user).and_return(user)  
+      user = FactoryBot.create :user
+      sign_in(user)  
     end
-    
+   
     # test to create a procedure
     it 'should create a procedure' do
       post :create, params: { procedure: {

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 
 RSpec.feature "Facilities", type: :feature do
+  context 'when user is not logged in' do
     it "should create a facility", js: true  do
       visit '/facilities'
       save_screenshot('first.png')
@@ -19,7 +20,7 @@ RSpec.feature "Facilities", type: :feature do
       sleep 1
      
       # checking database
-      facility = Facility.first
+      facility = Facility.last
       expect(facility.name).to(eq('Uncg'))
       save_screenshot('fourth.png')
 
@@ -27,5 +28,6 @@ RSpec.feature "Facilities", type: :feature do
       visit '/facilities'
       expect(page).to have_content("Uncg")
     end
+  end
 end
 

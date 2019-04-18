@@ -4,13 +4,10 @@ RSpec.describe FacilitiesController, type: :controller do
 
   context 'when user is not logged in' do
     setup do 
-      user = User.create()
-      allow(controller).to receive(:authenticate_user!).and_return(false)
-      allow(controller).to receive(:current_user).and_return(user)	
     end	      
     
     # test to create a facility
-    it 'should create a facility'do  
+    it 'should create a facility' do  
       post :create, params: { facility: {
         name: 'Office',
        	street: '101 Anystreet',
@@ -25,13 +22,12 @@ RSpec.describe FacilitiesController, type: :controller do
 
   context 'when user is logged in' do
     setup do
-      user = User.create()
-      allow(controller).to receive(:authenticate_user!).and_return(true)
-      allow(controller).to receive(:current_user).and_return(user)
+      user = FactoryBot.create :user
+      sign_in(user)
     end
 
     # test to create a facility
-    it 'should create a facility'do
+    it 'should create a facility' do
       post :create, params: { facility: {
         name: 'Office',
        	street: '101 Anystreet',
@@ -46,9 +42,8 @@ RSpec.describe FacilitiesController, type: :controller do
 
   context 'when user is logged in' do
       setup do
-        user = User.create()
-        allow(controller).to receive(:authenticate_user!).and_return(true)
-        allow(controller).to receive(:current_user).and_return(user)   
+        user = FactoryBot.create :user
+        sign_in(user)	      
       end
 
     it 'should update a facility', js: true do
