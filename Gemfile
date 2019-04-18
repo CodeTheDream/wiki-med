@@ -43,11 +43,15 @@ gem 'humanizer', '~> 2.6.4'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use puma for testing server
+gem 'puma', '~> 3.12.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   #RSPEC gem for testing 
   gem 'rspec-rails', '~>3.8.0'
+  gem  'factory_bot_rails', '~> 5.0.2'
 end
 
 group :development do
@@ -62,6 +66,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'poltergeist', '~>1.18.1'
-  
+  gem 'selenium', '~> 0.2.11'
+  gem 'selenium-webdriver', '~> 3.141'
 end
 
