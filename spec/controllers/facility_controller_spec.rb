@@ -6,15 +6,18 @@ RSpec.describe FacilitiesController, type: :controller do
     setup do 
     end	      
     
+    fac_params = { facility: {
+                     name: 'Office',
+                     street: '101 Anystreet',
+                     city: 'Someplace',
+                     state: 'NC',
+                     zip: '22222',
+                     specialty: 'general'}}
+
+    
     # test to create a facility
     it 'should create a facility' do  
-      post :create, params: { facility: {
-        name: 'Office',
-       	street: '101 Anystreet',
-       	city: 'Someplace',
-       	state: 'NC',
-       	zip: '22222',
-       	specialty: 'general'}}
+      post :create, params: fac_params
       facility = Facility.first
       expect(facility.name).to eq('Office')
     end
@@ -26,15 +29,17 @@ RSpec.describe FacilitiesController, type: :controller do
       sign_in(user)
     end
 
+    fac_params = { facility: {
+                     name: 'Office',
+                     street: '101 Anystreet',
+                     city: 'Someplace',
+                     state: 'NC',
+                     zip: '22222',
+                     specialty: 'general'}}
+
     # test to create a facility
     it 'should create a facility' do
-      post :create, params: { facility: {
-        name: 'Office',
-       	street: '101 Anystreet',
-       	city: 'Someplace',
-       	state: 'NC',
-       	zip: '22222',
-       	specialty: 'general'}}
+      post :create, params: fac_params
       facility = Facility.first
       expect(facility.name).to eq('Office')
     end
@@ -58,7 +63,7 @@ RSpec.describe FacilitiesController, type: :controller do
       )
     
       facility_params = {
-	name: 'Dr. Office',
+	      name: 'Dr. Office',
         street: '101 Anystreet',
         city: 'Someplace',
         state: 'NC',
